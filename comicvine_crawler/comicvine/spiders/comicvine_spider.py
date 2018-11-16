@@ -17,11 +17,6 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
 
-# global variable (please set manually) to allow code-sharing between the different results-sets
-# ISSUES_N_CHARS=0: crawl characters pages
-# ISSUES_N_CHARS=1: crawl issue pages
-ISSUES_N_CHARS = 1
-
 # global variables used to define the last hub pages numbering (used for initial URL seed list)
 ISSUES_LAST_PAGE = 413
 
@@ -33,24 +28,20 @@ class COMICVINESpider(scrapy.Spider):
     wfile_handle = open(wfilename, "w")
     # incremental unique identifier counter (maps to 'doc_id' in output file)
     uniq_id = 0
-    if ISSUES_N_CHARS == 1: # issue pages case
-        # REGEX for issue-pages filtering
-        reg_ptrn = re.compile("https?:\/\/comicvine\.gamespot\.com\/.*\/4000-.*")
-        rules = (
-            # follow pattern
-            Rule(LinkExtractor(allow=(r'^https?://comicvine.gamespot.com/.*/4000-.*', )), follow=True),
-        )
-    # else: # TODO: charachters pages case
+    # REGEX for issue-pages filtering
+    reg_ptrn = re.compile("https?:\/\/comicvine\.gamespot\.com\/.*\/4000-.*")
+    rules = (
+        # follow pattern
+        Rule(LinkExtractor(allow=(r'^https?://comicvine.gamespot.com/.*/4000-.*', )), follow=True),
+    )
 
     # URL seed initiate list
     def start_requests(self):
         urls = []
-        if ISSUES_N_CHARS == 1: # issue pages case
-            # generate seed list
-            for page_idx in range(0, ISSUES_LAST_PAGE + 1):
-                url_str = 'https://comicvine.gamespot.com/issues/?letter=&sortBy=alpha&minRating=2&fromYear=&toYear=&page=' + str(page_idx)
-                urls.append(url_str)
-        # else: # TODO: charachters pages case
+        # generate seed list
+        for page_idx in range(0, ISSUES_LAST_PAGE + 1):
+            url_str = 'https://comicvine.gamespot.com/issues/?letter=&sortBy=alpha&minRating=2&fromYear=&toYear=&page=' + str(page_idx)
+            urls.append(url_str)
         for url in urls:
             # return an iterable of Requests
             yield scrapy.Request(url=url, callback=self.parse)
@@ -73,14 +64,6 @@ class COMICVINESpider(scrapy.Spider):
             # serialize constructed dictionary to an output JSON-line
             temp_string = json.dumps(temp_dict_out)
             self.wfile_handle.write(temp_string + '\n')
-            '''
-            yield {
-                'doc_id': self.uniq_id,
-                'url': page_url,
-                'raw_content': response.body.decode('utf-8'),
-                'timestamp_crawl': timestamp_str,
-            }
-            '''
             # increase the unique identifier
             self.uniq_id += 1
         # extract follow-up urls from response
