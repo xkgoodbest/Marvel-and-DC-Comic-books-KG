@@ -19,4 +19,5 @@ class ImdbItem(scrapy.Item):
     motion_pic_rate = scrapy.Field()
     key_words = scrapy.Field()
     release_date = scrapy.Field()
+    characters = scrapy.Field()
     pass

@@ -49,16 +49,35 @@ class ImdbSpider(scrapy.Spider):
         if genres:
             l.add_value('genres', genres)
 
-        key_words = response.xpath('//div[h4="Plot Keywords:"]/a/span/text()').extract()
+        key_words = response.xpath(
+            '//div[h4="Plot Keywords:"]/a/span/text()').extract()
         if key_words:
             l.add_value('key_words', key_words)
 
-        release_date = response.xpath('//div[h4="Release Date:"]/text()').extract()
+        release_date = response.xpath(
+            '//div[h4="Release Date:"]/text()').extract()
         if release_date:
             l.add_value('release_date', release_date)
 
+        ch_link = response.xpath(
+            '//div[contains(@class,"see-more")]/a[contains(@href,"cast")]/@href').extract()
+        for page in ch_link:
+            next_page = response.urljoin(page)
+            request = scrapy.Request(url=next_page.replace(
+                '\n', ''), callback=self.parseCharacters)
+            request.meta['item'] = l
+            yield request
+
         self.count += 1
         return l.load_item()
+
+    def parseCharacters(self, response):
+        ch_link = response.xpath(
+            '//td[contains(@class,"character")]/a[contains(@href,"title")]/text()').extract()
+        l = response.meta['item']
+        if ch_link:
+            l.add_value('characters', ch_link)
+        yield l.load_item()
 
     def parsePages(self, response):
         movie_pages = response.xpath(
