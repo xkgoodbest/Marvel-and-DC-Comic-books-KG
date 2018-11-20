@@ -1,0 +1,251 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix mdcu: <http://inf558.org/comics#> .
+
+#### MDCU Character ###
+mdcu:character a rdfs:Class ;
+    dbp:publisher           schema:Text         ;
+    foaf:name               schema:Text         ;
+    mdcu:real_name          schema:Text         ;
+    dbp:aliases             schema:Text         ;
+    mdcu:current_alias      schema:Text         ;
+    mdcu:has_alignment      mdcu:alignment      ;
+    mdcu:has_identity       mdcu:identity       ;
+    mdcu:has_citizenship    mdcu:citizenship    ;
+    mdcu:marital_status     schema:Text         ;
+    mdcu:has_race           dbp:species         ;
+    foaf:gender             schema:Text         ;
+    mdcu:height             xsd:integer         ;
+    mdcu:weight             xsd:integer         ;
+    mdcu:eyes               schema:Text         ;
+    mdcu:hair               schema:Text         ;
+    mdcu:relative           mdcu:character      ;
+    dbp:alliances           mdcu:team           ;
+    mdcu:operation_base     schema:Place        ;
+    mdcu:has_occupation     mdcu:occupation     ;
+    dbp:creators            schema:Text         ;
+    mdcu:first_appearance   xsd:date            ;
+    dbp:powers              schema:Text         ;
+    mdcu:ability            schema:Text         ;
+    mdcu:weakness           schema:Text         ;
+    mdcu:trivia_fact        schema:Text         ;
+    mdcu:issue_appearance   mdcu:issue          ;
+    mdcu:movie_appearance   mdcu:movie          .
+
+#### MDCU Comic Book Issue ###
+mdcu:issue a rdfs:Class ;
+    dbp:publisher                   schema:Text             ;
+    foaf:name                       schema:Text             ;
+    mdcu:volume                     xsd:integer             ;
+    mdcu:issue_number               xsd:integer             ;
+    mdcu:cover_date                 xsd:date                ;
+    mdcu:in_store_date              xsd:date                ;
+    mdcu:issue_character_appearance mdcu:character          ;
+    mdcu:rating                     xsd:decimal             ;
+    dbp:creators                    schema:Text             ;
+    mdcu:issue_team_appearance      mdcu:team               ;
+    mdcu:location_appearance        schema:Place            ;
+    dbo:abstract                    schema:Text             .
+
+#### MDCU Movie ###
+mdcu:movie a rdfs:Class ;
+    foaf:name                       schema:Text             ;
+    mdcu:rating                     xsd:decimal             ;
+    mdcu:motion_picture_rating      schema:Text             ;
+    dbo:abstract                    schema:Text             ;
+    mdcu:has_genre                  mdcu:genre              ;
+    mdcu:key_word                   schema:Text             ;
+    mdcu:release_date               xsd:date                ;
+    mdcu:movie_character_appearance mdcu:character          .
+
+#### MDCU Shared Properties ###
+mdcu:rating a rdf:Property ;
+    rdfs:label  "Rating"@en         ;
+    rdfs:range  xsd:decimal         .
+
+#### MDCU Character Properties ###
+mdcu:real_name a rdf:Property ;
+    rdfs:label  "Real Name"@en      ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:current_alias a rdf:Property ;
+    rdfs:label  "Current Alias"@en  ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:has_alignment a rdf:Property ;
+    rdfs:label  "Has Alignment"@en  ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:alignment      .
+
+mdcu:has_identity a rdf:Property ;
+    rdfs:label  "Has Identity"@en   ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:identity       .
+
+mdcu:has_citizenship a rdf:Property ;
+    rdfs:label  "Has Citizenship"@en    ;
+    rdfs:domain mdcu:character          ;
+    rdfs:range  mdcu:citizenship        .
+
+mdcu:marital_status a rdf:Property ;
+    rdfs:label  "Marital Status"@en ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:has_race a rdf:Property ;
+    rdfs:label  "Has Race"@en       ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  dbp:species         .
+
+mdcu:height a rdf:Property ;
+    rdfs:label  "Height"@en         ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  xsd:integer         .
+
+mdcu:weight a rdf:Property ;
+    rdfs:label  "Weight"@en         ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  xsd:integer         .
+
+mdcu:eyes a rdf:Property ;
+    rdfs:label  "Eyes"@en           ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:hair a rdf:Property ;
+    rdfs:label  "Hair"@en           ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:relative a rdf:Property ;
+    rdfs:label  "Relative"@en       ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:character      .
+
+mdcu:operation_base a rdf:Property ;
+    rdfs:label  "Operation Base"@en ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Place        .
+
+mdcu:has_occupation a rdf:Property ;
+    rdfs:label  "Has Occupation"@en ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:occupation     .
+
+mdcu:first_appearance a rdf:Property ;
+    rdfs:label  "First Appearance Date"@en  ;
+    rdfs:domain mdcu:character              ;
+    rdfs:range  xsd:date                    .
+
+mdcu:ability a rdf:Property ;
+    rdfs:label  "Ability"@en    ;
+    rdfs:domain mdcu:character  ;
+    rdfs:range  schema:Text     .
+
+mdcu:weakness a rdf:Property ;
+    rdfs:label  "Weakness"@en   ;
+    rdfs:domain mdcu:character  ;
+    rdfs:range  schema:Text     .
+
+mdcu:trivia_fact a rdf:Property ;
+    rdfs:label  "Trivia Fact"@en    ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  schema:Text         .
+
+mdcu:issue_appearance a rdf:Property ;
+    rdfs:label  "Issue Appearance"@en   ;
+    rdfs:domain mdcu:character          ;
+    rdfs:range  mdcu:issue              .
+
+mdcu:movie_appearance a rdf:Property ;
+    rdfs:label  "Movie Appearance"@en   ;
+    rdfs:domain mdcu:character          ;
+    rdfs:range  mdcu:movie              .
+
+#### MDCU Comic Book Issue Properties ###
+mdcu:volume a rdf:Property ;
+    rdfs:label  "Volume"@en ;
+    rdfs:domain mdcu:issue  ;
+    rdfs:range  xsd:integer .
+
+mdcu:issue_number a rdf:Property ;
+    rdfs:label  "Issue Number"@en ;
+    rdfs:domain mdcu:issue  ;
+    rdfs:range  xsd:integer .
+
+mdcu:cover_date a rdf:Property ;
+    rdfs:label  "Cover Date"@en     ;
+    rdfs:domain mdcu:issue          ;
+    rdfs:range  xsd:date            .
+
+mdcu:in_store_date a rdf:Property ;
+    rdfs:label  "In Store date"@en  ;
+    rdfs:domain mdcu:issue          ;
+    rdfs:range  xsd:date            .
+
+mdcu:issue_character_appearance a rdf:Property ;
+    rdfs:label  "Issue Character Appearance"@en  ;
+    rdfs:domain mdcu:issue          ;
+    rdfs:range  mdcu:character      .
+
+mdcu:issue_team_appearance a rdf:Property ;
+    rdfs:label  "Issue Team Appearance"@en  ;
+    rdfs:domain mdcu:issue                  ;
+    rdfs:range  mdcu:team                   .
+
+mdcu:location_appearance a rdf:Property ;
+    rdfs:label  "Location Appearance"@en    ;
+    rdfs:domain mdcu:issue                  ;
+    rdfs:range  schema:Place                .
+
+mdcu:motion_picture_rating a rdf:Property ;
+    rdfs:label  "Motion Picture Rating"@en  ;
+    rdfs:domain mdcu:movie                  ;
+    rdfs:range  schema:Text                 .
+
+mdcu:has_genre a rdf:Property ;
+    rdfs:label  "Has Genre"@en  ;
+    rdfs:domain mdcu:movie      ;
+    rdfs:range  mdcu:genre      .
+
+mdcu:key_word a rdf:Property ;
+    rdfs:label  "Key Word"@en  ;
+    rdfs:domain mdcu:movie     ;
+    rdfs:range  schema:Text    .
+
+mdcu:release_date a rdf:Property ;
+    rdfs:label  "Release Date"@en   ;
+    rdfs:domain mdcu:movie          ;
+    rdfs:range  xsd:date            .
+
+mdcu:movie_character_appearance a rdf:Property ;
+    rdfs:label  "Release Date"@en   ;
+    rdfs:domain mdcu:movie          ;
+    rdfs:range  mdcu:character      .
+
+#### MDCU Additional Classes ###
+mdcu:alignment a rdfs:Class ;
+    rdfs:label "alignment"@en .
+
+mdcu:identity a rdfs:Class ;
+    rdfs:label "identity"@en .
+
+mdcu:citizenship a rdfs:Class ;
+    rdfs:label "citizenship"@en .
+
+mdcu:occupation a rdfs:Class ;
+    rdfs:label "occupation"@en .
+
+mdcu:team a rdfs:Class ;
+    rdfs:label "team"@en .
+
+mdcu:genre a rdfs:Class ;
+    rdfs:label "genre"@en .
