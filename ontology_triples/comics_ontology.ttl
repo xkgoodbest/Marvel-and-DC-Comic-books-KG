@@ -9,7 +9,7 @@
 @prefix dbr: <http://dbpedia.org/resource/> .
 @prefix mdcu: <http://inf558.org/comics#> .
 
-#### MDCU Character ###
+#### MDCU Character ####
 mdcu:character a rdfs:Class ;
     dbp:publisher           schema:Text         ;
     foaf:name               schema:Text         ;
@@ -20,7 +20,7 @@ mdcu:character a rdfs:Class ;
     mdcu:has_identity       mdcu:identity       ;
     mdcu:has_citizenship    mdcu:citizenship    ;
     mdcu:marital_status     schema:Text         ;
-    mdcu:has_race           dbp:species         ;
+    dbp:species             mdcu:race           ;
     foaf:gender             schema:Text         ;
     mdcu:height             xsd:integer         ;
     mdcu:weight             xsd:integer         ;
@@ -30,17 +30,17 @@ mdcu:character a rdfs:Class ;
     dbp:alliances           mdcu:team           ;
     mdcu:operation_base     schema:Place        ;
     mdcu:has_occupation     mdcu:occupation     ;
-    dbp:creators            schema:Text         ;
+    mdcu:has_creator        mdcu:creator        ;
     mdcu:first_appearance   xsd:date            ;
     schema:birthPlace       schema:Place        ;
-    dbp:powers              schema:Text         ;
-    mdcu:ability            schema:Text         ;
-    mdcu:weakness           schema:Text         ;
+    dbp:powers              mdcu:power          ;
+    mdcu:has_ability        mdcu:ability        ;
+    mdcu:has_weakness       mdcu:weakness       ;
     mdcu:trivia_fact        schema:Text         ;
     mdcu:issue_appearance   mdcu:issue          ;
     mdcu:movie_appearance   mdcu:movie          .
 
-#### MDCU Comic Book Issue ###
+#### MDCU Comic Book Issue ####
 mdcu:issue a rdfs:Class ;
     dbp:publisher                   schema:Text             ;
     foaf:name                       schema:Text             ;
@@ -50,12 +50,12 @@ mdcu:issue a rdfs:Class ;
     mdcu:in_store_date              xsd:date                ;
     mdcu:issue_character_appearance mdcu:character          ;
     mdcu:rating                     xsd:decimal             ;
-    dbp:creators                    schema:Text             ;
+    mdcu:has_creator                mdcu:creator            ;
     mdcu:issue_team_appearance      mdcu:team               ;
     mdcu:location_appearance        schema:Place            ;
     dbo:abstract                    schema:Text             .
 
-#### MDCU Movie ###
+#### MDCU Movie ####
 mdcu:movie a rdfs:Class ;
     foaf:name                       schema:Text             ;
     mdcu:rating                     xsd:decimal             ;
@@ -66,12 +66,16 @@ mdcu:movie a rdfs:Class ;
     mdcu:release_date               xsd:date                ;
     mdcu:movie_character_appearance mdcu:character          .
 
-#### MDCU Shared Properties ###
+#### MDCU Shared Properties ####
 mdcu:rating a rdf:Property ;
     rdfs:label  "Rating"@en         ;
     rdfs:range  xsd:decimal         .
 
-#### MDCU Character Properties ###
+mdcu:has_creator a rdf:Property ;
+    rdfs:label  "Has Creator"@en    ;
+    rdfs:range   mdcu:creator       .
+
+#### MDCU Character Properties ####
 mdcu:real_name a rdf:Property ;
     rdfs:label  "Real Name"@en      ;
     rdfs:domain mdcu:character      ;
@@ -101,11 +105,6 @@ mdcu:marital_status a rdf:Property ;
     rdfs:label  "Marital Status"@en ;
     rdfs:domain mdcu:character      ;
     rdfs:range  schema:Text         .
-
-mdcu:has_race a rdf:Property ;
-    rdfs:label  "Has Race"@en       ;
-    rdfs:domain mdcu:character      ;
-    rdfs:range  dbp:species         .
 
 mdcu:height a rdf:Property ;
     rdfs:label  "Height"@en         ;
@@ -147,15 +146,15 @@ mdcu:first_appearance a rdf:Property ;
     rdfs:domain mdcu:character              ;
     rdfs:range  xsd:date                    .
 
-mdcu:ability a rdf:Property ;
-    rdfs:label  "Ability"@en    ;
-    rdfs:domain mdcu:character  ;
-    rdfs:range  schema:Text     .
+mdcu:has_ability a rdf:Property ;
+    rdfs:label  "Has Ability"@en    ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:ability        .
 
-mdcu:weakness a rdf:Property ;
-    rdfs:label  "Weakness"@en   ;
-    rdfs:domain mdcu:character  ;
-    rdfs:range  schema:Text     .
+mdcu:has_weakness a rdf:Property ;
+    rdfs:label  "Has Weakness"@en   ;
+    rdfs:domain mdcu:character      ;
+    rdfs:range  mdcu:weakness       .
 
 mdcu:trivia_fact a rdf:Property ;
     rdfs:label  "Trivia Fact"@en    ;
@@ -172,7 +171,7 @@ mdcu:movie_appearance a rdf:Property ;
     rdfs:domain mdcu:character          ;
     rdfs:range  mdcu:movie              .
 
-#### MDCU Comic Book Issue Properties ###
+#### MDCU Comic Book Issue Properties ####
 mdcu:volume a rdf:Property ;
     rdfs:label  "Volume"@en ;
     rdfs:domain mdcu:issue  ;
@@ -233,21 +232,43 @@ mdcu:movie_character_appearance a rdf:Property ;
     rdfs:domain mdcu:movie          ;
     rdfs:range  mdcu:character      .
 
-#### MDCU Additional Classes ###
+#### MDCU Additional Classes ####
 mdcu:alignment a rdfs:Class ;
-    rdfs:label "alignment"@en .
+    rdfs:label "Alignment"@en .
 
 mdcu:identity a rdfs:Class ;
-    rdfs:label "identity"@en .
+    rdfs:label "Identity"@en .
 
 mdcu:citizenship a rdfs:Class ;
-    rdfs:label "citizenship"@en .
+    rdfs:label "Citizenship"@en .
 
 mdcu:occupation a rdfs:Class ;
-    rdfs:label "occupation"@en .
+    rdfs:label "Occupation"@en .
+
+mdcu:race a rdfs:Class ;
+    rdfs:label "Race"@en .
+
+mdcu:power a rdfs:Class ;
+    rdfs:label  "Power"@en .
+
+mdcu:ability a rdfs:Class ;
+    rdfs:label  "Ability"@en .
+
+mdcu:weakness a rdfs:Class ;
+    rdfs:label  "Weakness"@en .
 
 mdcu:team a rdfs:Class ;
-    rdfs:label "team"@en .
+    rdfs:label "Team"@en            ;
+    mdcu:has_member mdcu:character  .
 
 mdcu:genre a rdfs:Class ;
-    rdfs:label "genre"@en .
+    rdfs:label "Genre"@en .
+
+mdcu:creator a rdfs:Class ;
+    rdfs:label "Creator"@en .
+
+#### MDCU Additional Properties ####
+mdcu:has_member a rdf:Property ;
+    rdfs:label  "Has Member"@en ;
+    rdfs:domain mdcu:team  ;
+    rdfs:range  mdcu:character .
