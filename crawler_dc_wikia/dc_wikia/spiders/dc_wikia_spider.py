@@ -4,6 +4,7 @@
     This scrapy-spider-crawler crawls http://dc.wikia.com/ and yields an output file
 '''
 
+import string
 # json utilities
 import json
 # to maintain ordered-dictionaries
@@ -17,6 +18,9 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
 
+NUM_OF_REQ_BS_IN_URL = 5
+NUM_OF_REQ_QM_IN_URL = 1
+
 # DCWIKIA-Spider class
 class DCWIKIASpider(scrapy.Spider):
     name = "dc_wikia"
@@ -27,10 +31,18 @@ class DCWIKIASpider(scrapy.Spider):
     uniq_id = 0
     # REGEX for issue-pages filtering
     reg_ptrn = re.compile("http?:\/\/dc\.wikia\.com\/wiki\/.*(\(Earth-One\)|\(New_Earth\)|Category:Earth-One_Characters).*")
+    rules = (
+        # follow pattern
+        Rule(LinkExtractor(allow=(r'http?:\/\/dc\.wikia\.com\/wiki\/.*(\(Earth-One\)|\(New_Earth\)|Category:Earth-One_Characters).*', )), follow=True),
+    )
 
     # URL seed initiate list
     def start_requests(self):
-        urls = ['http://dc.wikia.com/wiki/Category:Earth-One_Characters']
+        urls = ['http://dc.wikia.com/wiki/Category:Earth-One_Characters', \
+                'http://dc.wikia.com/index.php?title=Category:Earth-One_Characters&from=0']
+        url_base = 'http://dc.wikia.com/index.php?title=Category:Earth-One_Characters&from='
+        for i in range(ord('A'), ord('Z')+1):
+            urls.append(url_base + chr(i))
         for url in urls:
             # return an iterable of Requests
             yield scrapy.Request(url=url, callback=self.parse)
@@ -38,8 +50,13 @@ class DCWIKIASpider(scrapy.Spider):
     # a method that will be called to handle the response downloaded for each of the requests made
     def parse(self, response):
         page_url = response.url
+        # if webpage is not required, skip
+        num_of_bs_in_url = len(page_url.split('/'))
+        num_of_qm_in_url = len(page_url.split('?'))
         # check if the page is according to defined REGEX
-        if self.reg_ptrn.match(page_url) and 5 == len(page_url.split('/')):
+        if self.reg_ptrn.match(page_url) and not(NUM_OF_REQ_BS_IN_URL != num_of_bs_in_url or \
+                                                 NUM_OF_REQ_QM_IN_URL != num_of_qm_in_url or \
+                                                 'File:' in page_url):
             # generate timestamp field
             timestamp_str = str(datetime.datetime.now())
             # debug print (in INFO logging mode)

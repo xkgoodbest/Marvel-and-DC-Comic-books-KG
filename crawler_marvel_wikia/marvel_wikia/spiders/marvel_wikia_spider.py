@@ -4,6 +4,7 @@
     This scrapy-spider-crawler crawls http://marvel.wikia.com/ and yields an output file
 '''
 
+import string
 # json utilities
 import json
 # to maintain ordered-dictionaries
@@ -16,6 +17,9 @@ import re
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
+
+NUM_OF_REQ_BS_IN_URL = 5
+NUM_OF_REQ_QM_IN_URL = 1
 
 # MARVELWIKIA-Spider class
 class MARVELWIKIASpider(scrapy.Spider):
@@ -30,7 +34,11 @@ class MARVELWIKIASpider(scrapy.Spider):
 
     # URL seed initiate list
     def start_requests(self):
-        urls = ['http://marvel.wikia.com/wiki/Category:Earth-616_Characters']
+        urls = ['http://marvel.wikia.com/wiki/Category:Earth-616_Characters', \
+                'http://marvel.wikia.com/index.php?title=Category:Earth-616_Characters&from=0']
+        url_base = 'http://marvel.wikia.com/index.php?title=Category:Earth-616_Characters&from='
+        for i in range(ord('A'), ord('Z')+1):
+            urls.append(url_base + chr(i))
         for url in urls:
             # return an iterable of Requests
             yield scrapy.Request(url=url, callback=self.parse)
@@ -38,8 +46,13 @@ class MARVELWIKIASpider(scrapy.Spider):
     # a method that will be called to handle the response downloaded for each of the requests made
     def parse(self, response):
         page_url = response.url
+        # if webpage is not required, skip
+        num_of_bs_in_url = len(page_url.split('/'))
+        num_of_qm_in_url = len(page_url.split('?'))
         # check if the page is according to defined REGEX
-        if self.reg_ptrn.match(page_url):
+        if self.reg_ptrn.match(page_url) and not(NUM_OF_REQ_BS_IN_URL != num_of_bs_in_url or \
+                                                 NUM_OF_REQ_QM_IN_URL != num_of_qm_in_url or \
+                                                 'File:' in page_url):
             # generate timestamp field
             timestamp_str = str(datetime.datetime.now())
             # debug print (in INFO logging mode)
