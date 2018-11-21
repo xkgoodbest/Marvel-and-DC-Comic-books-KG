@@ -15,10 +15,11 @@ mdcu:issue_4000_106707 a mdcu:issue ;
     mdcu:in_store_date "2006-09-27"^^xsd:date ;
     mdcu:issue_character_appearance mdcu:_wiki_superman__clark_kent_ ;
     mdcu:issue_number 21 ;
-    mdcu:issue_team_appearance mdcu:_teen-titans_4060-19081_ ;
+    mdcu:issue_team_appearance mdcu:_teen_titans_4060_19081_ ;
     mdcu:location_appearance mdcu:_alabama_4020-56096_ ;
     mdcu:rating 4.5 ;
-    mdcu:role_colorist mdcu:_david-baron_4040-4700_ ;
+    mdcu:role_editor mdcu:_dan-didio_4040-51584_ ;
+    mdcu:role_inker mdcu:_jack-jadson_4040-3711_ ;
     mdcu:role_writer mdcu:_geoff-johns_4040-40439_ ;
     mdcu:volume "52" ;
     foaf:name "Teambuilding Exercises" .
@@ -28,59 +29,19 @@ mdcu:issue_4000_111800 a mdcu:issue ;
     mdcu:cover_date "2005-12-01"^^xsd:date ;
     mdcu:issue_character_appearance mdcu:_wiki_superman__clark_kent_ ;
     mdcu:issue_number 832 ;
+    mdcu:issue_team_appearance mdcu:_daily_planet_4060_42195_ ;
     mdcu:location_appearance mdcu:_metropolis_4020-41184_ ;
     mdcu:rating 2.5 ;
+    mdcu:role_editor mdcu:_dan-didio_4040-51584_ ;
     mdcu:role_writer mdcu:_andy-lanning_4040-7874_ ;
     mdcu:volume "Action Comics" ;
     foaf:name "The Devil You Know" .
-
-mdcu:_wiki_batman__bruce_wayne_ a mdcu:character ;
-    dbp:aliases "Atmahn" ;
-    dbp:publisher dbr:DC_Comics ;
-    mdcu:adopted_daughter mdcu:_wiki_cassandra_cain__new_earth_ ;
-    mdcu:current_alias "Batman" ;
-    mdcu:eyes "Blue" ;
-    mdcu:first_appearance "1986-10-01"^^xsd:date ;
-    mdcu:hair "Black" ;
-    mdcu:height 187 ;
-    mdcu:marital_status "Single" ;
-    mdcu:real_name "Bruce Wayne" ;
-    mdcu:trivia_fact "Atmahn is the name given Batman when he acquired the powers of a god and oversaw the proto Earth-1 with Superman and Wonder Woman.",
-        "Batman is the one who gave Bart Allen the heroic moniker of Impulse.",
-        "Batman's online screenname is JonDoe297." ;
-    mdcu:weight 95 ;
-    foaf:gender "male"@en ;
-    foaf:name "Batman" .
-
-mdcu:_wiki_superman__clark_kent_ a mdcu:character ;
-    dbp:aliases "Clark Smith" ;
-    dbp:publisher dbr:DC_Comics ;
-    mdcu:adoptive_father mdcu:_wiki_jonathan_kent__new_earth_ ;
-    mdcu:adoptive_mother mdcu:_wiki_martha_kent__new_earth_ ;
-    mdcu:current_alias "Superman" ;
-    mdcu:eyes "Blue" ;
-    mdcu:first_appearance "1986-10-01"^^xsd:date ;
-    mdcu:hair "Black" ;
-    mdcu:height 190 ;
-    mdcu:marital_status "Married" ;
-    mdcu:real_name "Kal-El (birth name);  Clark Joseph Kent (legal name)" ;
-    mdcu:weight 107 ;
-    mdcu:wife mdcu:_wiki_lois_lane__new_earth_ ;
-    foaf:gender "male"@en ;
-    foaf:name "Superman" .
-
-mdcu:adopted_daughter rdfs:subPropertyOf mdcu:relative .
-
-mdcu:adoptive_father rdfs:subPropertyOf mdcu:relative .
-
-mdcu:adoptive_mother rdfs:subPropertyOf mdcu:relative .
 
 mdcu:movie_tt4116284 a mdcu:movie ;
     dbo:abstract "There are big changes brewing in Gotham City, and if he wants to save the city from The Joker's hostile takeover, Batman may have to drop the lone vigilante thing, try to work with others and maybe, just maybe, learn to lighten up." ;
     mdcu:has_genre mdcu:genre_action,
         mdcu:genre_animation ;
-    mdcu:key_word "based_on_comic_book",
-        "lego" ;
+    mdcu:key_word "based_on_comic_book" ;
     mdcu:motion_picture_rating "PG" ;
     mdcu:movie_character_appearance mdcu:_wiki_superman__clark_kent_,
         mdcu:_wiki_batman__bruce_wayne_ ;
@@ -88,26 +49,155 @@ mdcu:movie_tt4116284 a mdcu:movie ;
     mdcu:release_date "2017-02-10"^^xsd:date ;
     foaf:name "The Lego Batman Movie" .
 
-mdcu:role_colorist rdfs:subPropertyOf mdcu:has_creator .
-
-mdcu:role_writer rdfs:subPropertyOf mdcu:has_creator .
-
-mdcu:wife rdfs:subPropertyOf mdcu:relative .
+mdcu:_teen_titans_4060_19081_ a mdcu:team ;
+    rdfs:label "Teen Titans" .
 
 mdcu:_alabama_4020-56096_ a schema:Place ;
     rdfs:label "Alabama" .
 
-mdcu:_metropolis_4020-41184_ a schema:Place ;
-    rdfs:label "Metropolis" .
+mdcu:role_editor rdfs:subPropertyOf mdcu:has_creator .
 
-mdcu:_teen-titans_4060-19081_ a mdcu:team ;
-    rdfs:label "Teen Titans" .
+mdcu:role_inker rdfs:subPropertyOf mdcu:has_creator .
 
-mdcu:_david-baron_4040-4700_ a mdcu:creator ;
-    rdfs:label "David Baron" .
+mdcu:role_writer rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:_dan-didio_4040-51584_ a mdcu:creator ;
+    rdfs:label "Dan DiDio" .
+
+mdcu:_jack-jadson_4040-3711_ a mdcu:creator ;
+    rdfs:label "Jack Jadson" .
 
 mdcu:_geoff-johns_4040-40439_ a mdcu:creator ;
     rdfs:label "Geoff Johns" .
 
+mdcu:_daily_planet_4060_42195_ a mdcu:team ;
+    rdfs:label "Daily Planet" .
+
+mdcu:_metropolis_4020-41184_ a schema:Place ;
+    rdfs:label "Metropolis" .
+
 mdcu:_andy-lanning_4040-7874_ a mdcu:creator ;
     rdfs:label "Andy Lanning" .
+
+mdcu:genre_action a mdcu:genre ;
+    rdfs:label "Action" .
+
+mdcu:genre_animation a mdcu:genre ;
+    rdfs:label "Animation" .
+
+mdcu:_wiki_batman__bruce_wayne_ a mdcu:character ;
+    dbp:aliases "Atmahn" ;
+    dbp:alliances mdcu:_wiki_justice_league_of_america__new_earth_ ;
+    dbp:publisher dbr:DC_Comics ;
+    mdcu:current_alias "Batman" ;
+    mdcu:eyes "Blue" ;
+    mdcu:first_appearance "1986-10-01"^^xsd:date ;
+    mdcu:hair "Black" ;
+    mdcu:has_ability mdcu:ability_indomitable_will ;
+    mdcu:has_alignment mdcu:alignment_good ;
+    mdcu:has_citizenship mdcu:citizenship_american ;
+    mdcu:has_identity mdcu:identity_secret_identity ;
+    mdcu:has_occupation mdcu:occupation_businessman ;
+    mdcu:has_weakness mdcu:weakness_single_mindedness ;
+    mdcu:height 187 ;
+    mdcu:marital_status "Single" ;
+    mdcu:operation_base  mdcu:_wiki_gotham_city ;
+    mdcu:real_name "Bruce Wayne" ;
+    mdcu:relative_adopted_daughter mdcu:_wiki_cassandra_cain__new_earth_ ;
+    mdcu:role_char_creator mdcu:_wiki_Bill_Finger,
+        mdcu:_wiki_Bob_Kane ;
+    mdcu:trivia_fact "Atmahn is the name given Batman when he acquired the powers of a god and oversaw the proto Earth-1 with Superman and Wonder Woman.",
+        "Batman is the one who gave Bart Allen the heroic moniker of Impulse.",
+        "Batman's online screenname is JonDoe297." ;
+    mdcu:weight 95 ;
+    schema:birthPlace mdcu:_wiki_gotham_city ;
+    foaf:gender "male"@en ;
+    foaf:name "Batman" .
+
+mdcu:_wiki_superman__clark_kent_ a mdcu:character ;
+    dbp:aliases "Clark Smith",
+        "Kellel" ;
+    dbp:alliances mdcu:_wiki_justice_league_of_america__new_earth_ ;
+    dbp:powers mdcu:power_electromagnetic_spectrum_vision,
+        mdcu:power_flight ;
+    dbp:publisher dbr:DC_Comics ;
+    mdcu:current_alias "Superman" ;
+    mdcu:eyes "Blue" ;
+    mdcu:first_appearance "1986-10-01"^^xsd:date ;
+    mdcu:hair "Black" ;
+    mdcu:has_alignment mdcu:alignment_good ;
+    mdcu:has_citizenship mdcu:citizenship_american ;
+    mdcu:has_identity mdcu:identity_secret_identity ;
+    mdcu:has_occupation mdcu:occupation_reporter ;
+    dbp:species mdcu:race_kryptonian ;
+    mdcu:height 190 ;
+    mdcu:marital_status "Married" ;
+    mdcu:operation_base mdcu:_wiki_metropolis ;
+    mdcu:real_name "Kal-El (birth name);  Clark Joseph Kent (legal name)" ;
+    mdcu:relative_adoptive_father mdcu:_wiki_jonathan_kent__new_earth_ ;
+    mdcu:relative_adoptive_mother mdcu:_wiki_martha_kent__new_earth_ ;
+    mdcu:role_char_creator mdcu:_wiki_Jerry_Siegel ;
+    mdcu:weight 107 ;
+    schema:birthPlace mdcu:_wiki_kryptonopolis ;
+    foaf:gender "male"@en ;
+    foaf:name "Superman" .
+
+mdcu:_wiki_justice_league_of_america__new_earth_ a mdcu:team ;
+    rdfs:label "Justice League",
+        "Justice League of America" ;
+    mdcu:has_member mdcu:_wiki_batman__bruce_wayne_,
+        mdcu:_wiki_superman__clark_kent_ .
+
+mdcu:ability_indomitable_will a mdcu:ability ;
+    rdfs:label "Indomitable Will" .
+
+mdcu:alignment_good a mdcu:alignment ;
+    rdfs:label "Good" .
+
+mdcu:citizenship_american a mdcu:citizenship ;
+    rdfs:label "American" .
+
+mdcu:identity_secret_identity a mdcu:identity ;
+    rdfs:label "Secret Identity" .
+
+mdcu:occupation_businessman a mdcu:occupation ;
+    rdfs:label "Businessman" .
+
+mdcu:occupation_reporter a mdcu:occupation ;
+    rdfs:label "Reporter" .
+
+mdcu:weakness_single_mindedness a mdcu:weakness ;
+    rdfs:label "Single-Mindedness" .
+
+mdcu:_wiki_gotham_city a schema:Place ;
+    rdfs:label "Gotham City" .
+
+mdcu:_wiki_Bill_Finger a mdcu:creator ;
+    rdfs:label "Bill Finger" .
+
+mdcu:_wiki_Bob_Kane a mdcu:creator ;
+    rdfs:label "Bob Kane" .
+
+mdcu:power_electromagnetic_spectrum_vision a mdcu:power ;
+    rdfs:label "Electromagnetic Spectrum Vision" .
+
+mdcu:power_flight a mdcu:power ;
+    rdfs:label "Flight" .
+
+mdcu:race_kryptonian a mdcu:race ;
+    rdfs:label "Kryptonian" .
+
+mdcu:_wiki_metropolis a schema:Place ;
+    rdfs:label "Metropolis" .
+
+mdcu:relative_adoptive_father rdfs:subPropertyOf mdcu:relative .
+
+mdcu:relative_adoptive_mother rdfs:subPropertyOf mdcu:relative .
+
+mdcu:relative_adopted_daughter rdfs:subPropertyOf mdcu:relative .
+
+mdcu:_wiki_Jerry_Siegel a mdcu:creator ;
+    rdfs:label "Jerry Siegel" .
+
+mdcu:_wiki_kryptonopolis a schema:Place ;
+    rdfs:label "Kryptonopolis, Krypton" .
