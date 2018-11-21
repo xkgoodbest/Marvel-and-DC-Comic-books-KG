@@ -1,0 +1,130 @@
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix mdcu: <http://inf558.org/comics#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://inf558.org/comics#4000-106707> a mdcu:issue ;
+    mdcu:cover_date "2006-09-27"^^xsd:date ;
+    mdcu:in_store_date "2006-09-27"^^xsd:date ;
+    mdcu:issue_character_appearance mdcu:_wiki_Superman__Clark_Kent_ ;
+    mdcu:issue_number 21 ;
+    mdcu:rating 4.5 ;
+    mdcu:volume "52" ;
+    foaf:name "Teambuilding Exercises" .
+
+<http://inf558.org/comics#4000-111800> a mdcu:issue ;
+    mdcu:cover_date "2005-12-01"^^xsd:date ;
+    mdcu:issue_character_appearance mdcu:_wiki_Superman__Clark_Kent_ ;
+    mdcu:issue_number 832 ;
+    mdcu:rating 2.5 ;
+    mdcu:volume "Action Comics" ;
+    foaf:name "The Devil You Know" .
+
+mdcu:_wiki_Batman__Bruce_Wayne_ a mdcu:character ;
+    dbp:aliases "Atmahn",
+        "Detective Hawke",
+        "Hei an Wushuh",
+        "Insider",
+        "Matches Malone",
+        "Robin" ;
+    dbp:publisher dbr:DC_Comics ;
+    mdcu:adopted_daughter mdcu:_wiki_Cassandra_Cain__New_Earth_ ;
+    mdcu:adopted_son mdcu:_wiki_Jason_Todd__New_Earth_,
+        mdcu:_wiki_Richard_Grayson__New_Earth_,
+        mdcu:_wiki_Timothy_Drake__New_Earth_ ;
+    mdcu:ancestor mdcu:_wiki_Simon_Hurt__New_Earth_ ;
+    mdcu:aunt mdcu:_wiki_Agatha_Wayne__New_Earth_ ;
+    mdcu:current_alias "Batman" ;
+    mdcu:eyes "Blue" ;
+    mdcu:father mdcu:_wiki_Thomas_Wayne__New_Earth_ ;
+    mdcu:first_appearance "1986-10-01"^^xsd:date ;
+    mdcu:grandfather mdcu:_wiki_Roderick_Kane__New_Earth_ ;
+    mdcu:grandmother mdcu:_wiki_Betsy_Kane__New_Earth_ ;
+    mdcu:hair "Black" ;
+    mdcu:height 187 ;
+    mdcu:marital_status "Single" ;
+    mdcu:mother mdcu:_wiki_Martha_Kane__New_Earth_ ;
+    mdcu:real_name "Bruce Wayne" ;
+    mdcu:son mdcu:_wiki_Damian_Wayne__New_Earth_ ;
+    mdcu:trivia_fact "Atmahn is the name given Batman when he acquired the powers of a god and oversaw the proto Earth-1 with Superman and Wonder Woman.",
+        "Batman is the one who gave Bart Allen the heroic moniker of Impulse.",
+        "Batman's online screenname is JonDoe297.",
+        "Bruce Wayne rarely drinks alcohol. Dick Grayson has mentioned that he's seen Bruce drink less times than he can count on one hand. When Stephanie Brown died, he drank Purcell's 12-year-old bourbon.",
+        "Bruce Wayne's favorite meal is Mulligatawny soup.",
+        "Bruce Wayne's middle name was never mentioned in any New Earth-era comic book.  The 2012 prose novel Wayne of Gotham (which was written to be compatible with New Earth continuity) gives his middle name as Patrick. Whether that should be considered canon for the comics is debatable.",
+        "Notable nicknames for Batman include: The Dark Knight, The Caped Crusader, The World's Greatest Detective, The Masked Manhunter, The Cowled Crimefighter, and simply The Bat." ;
+    mdcu:uncle mdcu:_wiki_Alfred_Pennyworth__New_Earth_ ;
+    mdcu:weight 95 ;
+    foaf:gender "male"@en ;
+    foaf:name "Batman" .
+
+mdcu:_wiki_Superman__Clark_Kent_ a mdcu:character ;
+    dbp:aliases "Clark Smith",
+        "Clark White",
+        "Commander El",
+        "Gangbuster",
+        "Kellel",
+        "Nightwing",
+        "Superboy",
+        "Superman Red/Blue" ;
+    dbp:publisher dbr:DC_Comics ;
+    mdcu:adoptive_father mdcu:_wiki_Jonathan_Kent__New_Earth_ ;
+    mdcu:adoptive_mother mdcu:_wiki_Martha_Kent__New_Earth_ ;
+    mdcu:ancestor mdcu:_wiki_Kem-L__New_Earth_,
+        mdcu:_wiki_Rao__New_Earth_ ;
+    mdcu:birth_father mdcu:_wiki_Jor-El__New_Earth_ ;
+    mdcu:birth_mother mdcu:_wiki_Lara_Lor-Van__New_Earth_ ;
+    mdcu:current_alias "Superman" ;
+    mdcu:eyes "Blue" ;
+    mdcu:first_appearance "1986-10-01"^^xsd:date ;
+    mdcu:hair "Black" ;
+    mdcu:height 190 ;
+    mdcu:marital_status "Married" ;
+    mdcu:real_name "Kal-El (birth name);  Clark Joseph Kent (legal name)" ;
+    mdcu:son mdcu:_wiki_Jonathan_Samuel_Kent__Prime_Earth_ ;
+    mdcu:weight 107 ;
+    mdcu:wife mdcu:_wiki_Lois_Lane__New_Earth_ ;
+    foaf:gender "male"@en ;
+    foaf:name "Superman" .
+
+mdcu:adopted_daughter rdfs:subPropertyOf mdcu:relative .
+
+mdcu:adopted_son rdfs:subPropertyOf mdcu:relative .
+
+mdcu:adoptive_father rdfs:subPropertyOf mdcu:relative .
+
+mdcu:adoptive_mother rdfs:subPropertyOf mdcu:relative .
+
+mdcu:ancestor rdfs:subPropertyOf mdcu:relative .
+
+mdcu:aunt rdfs:subPropertyOf mdcu:relative .
+
+mdcu:birth_father rdfs:subPropertyOf mdcu:relative .
+
+mdcu:birth_mother rdfs:subPropertyOf mdcu:relative .
+
+mdcu:father rdfs:subPropertyOf mdcu:relative .
+
+mdcu:grandfather rdfs:subPropertyOf mdcu:relative .
+
+mdcu:grandmother rdfs:subPropertyOf mdcu:relative .
+
+<http://inf558.org/comics#https://www.imdb.com/title/tt4116284/> a mdcu:movie ;
+    mdcu:movie_character_appearance mdcu:_wiki_Superman__Clark_Kent_,
+        mdcu:_wiki_Batman__Bruce_Wayne_ ;
+    mdcu:rating 7.3 ;
+    foaf:name "The Lego Batman Movie" .
+
+mdcu:mother rdfs:subPropertyOf mdcu:relative .
+
+mdcu:son rdfs:subPropertyOf mdcu:relative .
+
+mdcu:uncle rdfs:subPropertyOf mdcu:relative .
+
+mdcu:wife rdfs:subPropertyOf mdcu:relative .

@@ -6,6 +6,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dbp: <http://dbpedia.org/property/> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
 @prefix mdcu: <http://inf558.org/comics#> .
 
 #### MDCU Character ###
@@ -31,6 +32,7 @@ mdcu:character a rdfs:Class ;
     mdcu:has_occupation     mdcu:occupation     ;
     dbp:creators            schema:Text         ;
     mdcu:first_appearance   xsd:date            ;
+    schema:birthPlace       schema:Place        ;
     dbp:powers              schema:Text         ;
     mdcu:ability            schema:Text         ;
     mdcu:weakness           schema:Text         ;
@@ -42,7 +44,7 @@ mdcu:character a rdfs:Class ;
 mdcu:issue a rdfs:Class ;
     dbp:publisher                   schema:Text             ;
     foaf:name                       schema:Text             ;
-    mdcu:volume                     xsd:integer             ;
+    mdcu:volume                     schema:Text             ;
     mdcu:issue_number               xsd:integer             ;
     mdcu:cover_date                 xsd:date                ;
     mdcu:in_store_date              xsd:date                ;
@@ -174,7 +176,7 @@ mdcu:movie_appearance a rdf:Property ;
 mdcu:volume a rdf:Property ;
     rdfs:label  "Volume"@en ;
     rdfs:domain mdcu:issue  ;
-    rdfs:range  xsd:integer .
+    rdfs:range  schema:Text .
 
 mdcu:issue_number a rdf:Property ;
     rdfs:label  "Issue Number"@en ;
