@@ -9,24 +9,66 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://inf558.org/comics#4000-106707> a mdcu:issue ;
+mdcu:issue_4000_106707 a mdcu:issue ;
+    dbo:abstract "Natasha convinces Luthor to let Eliza back in to Infinity Inc. Afterwards, the team takes on Blockbuster. The Teen Titans show up just after Infinity, Inc. takes him down. The teams are in the middle of discussing how to clean up when Blockbuster escapes. Eliza follows him, but Luthor shuts off her powers and she gets killed.At Eliza's funeral, a few members of the Titans leave the group. The remaining members (Beast Boy, Raven, and Zatara) let Henry Irons know they will help find out what Luthor is up to.Ralph Dibny, still on his journey with Dr. Fate's helmet, coerces his way into the gate of hell.Notes:The cover is a homage to the covers with glass shattering." ;
     mdcu:cover_date "2006-09-27"^^xsd:date ;
     mdcu:in_store_date "2006-09-27"^^xsd:date ;
-    mdcu:issue_character_appearance mdcu:_wiki_Superman__Clark_Kent_ ;
+    mdcu:issue_character_appearance mdcu:_wiki_superman__clark_kent_ ;
     mdcu:issue_number 21 ;
+    mdcu:issue_team_appearance mdcu:_everyman-project_4060-58798_,
+        mdcu:_infinity-inc_4060-40384_,
+        mdcu:_teen-titans_4060-19081_,
+        mdcu:_the-titans_4060-50386_ ;
+    mdcu:location_appearance mdcu:_alabama_4020-56096_,
+        mdcu:_australia_4020-55838_,
+        mdcu:_hell_4020-42471_,
+        mdcu:_las-vegas_4020-55734_,
+        mdcu:_manchester-alabama_4020-57198_,
+        mdcu:_metropolis_4020-41184_,
+        mdcu:_nevada_4020-55779_ ;
     mdcu:rating 4.5 ;
+    mdcu:role_colorist mdcu:_david-baron_4040-4700_ ;
+    mdcu:role_cover mdcu:_alex-sinclair_4040-9587_,
+        mdcu:_jg-jones_4040-42268_ ;
+    mdcu:role_editor mdcu:_dan-didio_4040-51584_,
+        mdcu:_harvey-richards_4040-45305_,
+        mdcu:_jeanine-schaefer_4040-45035_,
+        mdcu:_stephen-wacker_4040-41929_ ;
+    mdcu:role_inker mdcu:_jack-jadson_4040-3711_ ;
+    mdcu:role_letterer mdcu:_travis-lanham_4040-41795_ ;
+    mdcu:role_other mdcu:_keith-giffen_4040-6536_ ;
+    mdcu:role_penciler mdcu:_joe-bennett_4040-1921_,
+        mdcu:_keith-giffen_4040-6536_ ;
+    mdcu:role_writer mdcu:_geoff-johns_4040-40439_,
+        mdcu:_grant-morrison_4040-40434_,
+        mdcu:_greg-rucka_4040-41228_,
+        mdcu:_mark-waid_4040-40724_ ;
     mdcu:volume "52" ;
     foaf:name "Teambuilding Exercises" .
 
-<http://inf558.org/comics#4000-111800> a mdcu:issue ;
+mdcu:issue_4000_111800 a mdcu:issue ;
+    dbo:abstract "Old Ghosts. The Spectre is attacking Metropolis!! How can Superman confront such a powerful magical being. Spectre is looking for Lord Satanus as part of his vengeance. Superman desperate tries to lead this battle away form his city and its people that he even offers his soul to Satanus. The battle ends when Satanus couldn't corrupt Superman's soul. While this was happening Lois Lane faces a whole different threat. She encounters with his father ghost, and she finally got a chance to tell him all the things she always wanted to." ;
     mdcu:cover_date "2005-12-01"^^xsd:date ;
-    mdcu:issue_character_appearance mdcu:_wiki_Superman__Clark_Kent_ ;
+    mdcu:issue_character_appearance mdcu:_wiki_superman__clark_kent_ ;
     mdcu:issue_number 832 ;
+    mdcu:issue_team_appearance mdcu:_daily-planet_4060-42195_ ;
+    mdcu:location_appearance mdcu:_metropolis_4020-41184_ ;
     mdcu:rating 2.5 ;
+    mdcu:role_cover mdcu:_dan-jurgens_4040-4321_,
+        mdcu:_wayne-faucher_4040-1679_ ;
+    mdcu:role_editor mdcu:_dan-didio_4040-51584_,
+        mdcu:_eddie-berganza_4040-41680_ ;
+    mdcu:role_inker mdcu:_mark-nelson_4040-3707_,
+        mdcu:_wayne-faucher_4040-1679_ ;
+    mdcu:role_letterer mdcu:_rob-leigh_4040-4519_ ;
+    mdcu:role_penciler mdcu:_dan-jurgens_4040-4321_,
+        mdcu:_john-byrne_4040-1770_ ;
+    mdcu:role_writer mdcu:_andy-lanning_4040-7874_,
+        mdcu:_dan-abnett_4040-41686_ ;
     mdcu:volume "Action Comics" ;
     foaf:name "The Devil You Know" .
 
-mdcu:_wiki_Batman__Bruce_Wayne_ a mdcu:character ;
+mdcu:_wiki_batman__bruce_wayne_ a mdcu:character ;
     dbp:aliases "Atmahn",
         "Detective Hawke",
         "Hei an Wushuh",
@@ -34,24 +76,24 @@ mdcu:_wiki_Batman__Bruce_Wayne_ a mdcu:character ;
         "Matches Malone",
         "Robin" ;
     dbp:publisher dbr:DC_Comics ;
-    mdcu:adopted_daughter mdcu:_wiki_Cassandra_Cain__New_Earth_ ;
-    mdcu:adopted_son mdcu:_wiki_Jason_Todd__New_Earth_,
-        mdcu:_wiki_Richard_Grayson__New_Earth_,
-        mdcu:_wiki_Timothy_Drake__New_Earth_ ;
-    mdcu:ancestor mdcu:_wiki_Simon_Hurt__New_Earth_ ;
-    mdcu:aunt mdcu:_wiki_Agatha_Wayne__New_Earth_ ;
+    mdcu:adopted_daughter mdcu:_wiki_cassandra_cain__new_earth_ ;
+    mdcu:adopted_son mdcu:_wiki_jason_todd__new_earth_,
+        mdcu:_wiki_richard_grayson__new_earth_,
+        mdcu:_wiki_timothy_drake__new_earth_ ;
+    mdcu:ancestor mdcu:_wiki_simon_hurt__new_earth_ ;
+    mdcu:aunt mdcu:_wiki_agatha_wayne__new_earth_ ;
     mdcu:current_alias "Batman" ;
     mdcu:eyes "Blue" ;
-    mdcu:father mdcu:_wiki_Thomas_Wayne__New_Earth_ ;
+    mdcu:father mdcu:_wiki_thomas_wayne__new_earth_ ;
     mdcu:first_appearance "1986-10-01"^^xsd:date ;
-    mdcu:grandfather mdcu:_wiki_Roderick_Kane__New_Earth_ ;
-    mdcu:grandmother mdcu:_wiki_Betsy_Kane__New_Earth_ ;
+    mdcu:grandfather mdcu:_wiki_roderick_kane__new_earth_ ;
+    mdcu:grandmother mdcu:_wiki_betsy_kane__new_earth_ ;
     mdcu:hair "Black" ;
     mdcu:height 187 ;
     mdcu:marital_status "Single" ;
-    mdcu:mother mdcu:_wiki_Martha_Kane__New_Earth_ ;
+    mdcu:mother mdcu:_wiki_martha_kane__new_earth_ ;
     mdcu:real_name "Bruce Wayne" ;
-    mdcu:son mdcu:_wiki_Damian_Wayne__New_Earth_ ;
+    mdcu:son mdcu:_wiki_damian_wayne__new_earth_ ;
     mdcu:trivia_fact "Atmahn is the name given Batman when he acquired the powers of a god and oversaw the proto Earth-1 with Superman and Wonder Woman.",
         "Batman is the one who gave Bart Allen the heroic moniker of Impulse.",
         "Batman's online screenname is JonDoe297.",
@@ -59,12 +101,12 @@ mdcu:_wiki_Batman__Bruce_Wayne_ a mdcu:character ;
         "Bruce Wayne's favorite meal is Mulligatawny soup.",
         "Bruce Wayne's middle name was never mentioned in any New Earth-era comic book.  The 2012 prose novel Wayne of Gotham (which was written to be compatible with New Earth continuity) gives his middle name as Patrick. Whether that should be considered canon for the comics is debatable.",
         "Notable nicknames for Batman include: The Dark Knight, The Caped Crusader, The World's Greatest Detective, The Masked Manhunter, The Cowled Crimefighter, and simply The Bat." ;
-    mdcu:uncle mdcu:_wiki_Alfred_Pennyworth__New_Earth_ ;
+    mdcu:uncle mdcu:_wiki_alfred_pennyworth__new_earth_ ;
     mdcu:weight 95 ;
     foaf:gender "male"@en ;
     foaf:name "Batman" .
 
-mdcu:_wiki_Superman__Clark_Kent_ a mdcu:character ;
+mdcu:_wiki_superman__clark_kent_ a mdcu:character ;
     dbp:aliases "Clark Smith",
         "Clark White",
         "Commander El",
@@ -74,12 +116,12 @@ mdcu:_wiki_Superman__Clark_Kent_ a mdcu:character ;
         "Superboy",
         "Superman Red/Blue" ;
     dbp:publisher dbr:DC_Comics ;
-    mdcu:adoptive_father mdcu:_wiki_Jonathan_Kent__New_Earth_ ;
-    mdcu:adoptive_mother mdcu:_wiki_Martha_Kent__New_Earth_ ;
-    mdcu:ancestor mdcu:_wiki_Kem-L__New_Earth_,
-        mdcu:_wiki_Rao__New_Earth_ ;
-    mdcu:birth_father mdcu:_wiki_Jor-El__New_Earth_ ;
-    mdcu:birth_mother mdcu:_wiki_Lara_Lor-Van__New_Earth_ ;
+    mdcu:adoptive_father mdcu:_wiki_jonathan_kent__new_earth_ ;
+    mdcu:adoptive_mother mdcu:_wiki_martha_kent__new_earth_ ;
+    mdcu:ancestor mdcu:_wiki_kem-l__new_earth_,
+        mdcu:_wiki_rao__new_earth_ ;
+    mdcu:birth_father mdcu:_wiki_jor-el__new_earth_ ;
+    mdcu:birth_mother mdcu:_wiki_lara_lor-van__new_earth_ ;
     mdcu:current_alias "Superman" ;
     mdcu:eyes "Blue" ;
     mdcu:first_appearance "1986-10-01"^^xsd:date ;
@@ -87,9 +129,9 @@ mdcu:_wiki_Superman__Clark_Kent_ a mdcu:character ;
     mdcu:height 190 ;
     mdcu:marital_status "Married" ;
     mdcu:real_name "Kal-El (birth name);  Clark Joseph Kent (legal name)" ;
-    mdcu:son mdcu:_wiki_Jonathan_Samuel_Kent__Prime_Earth_ ;
+    mdcu:son mdcu:_wiki_jonathan_samuel_kent__prime_earth_ ;
     mdcu:weight 107 ;
-    mdcu:wife mdcu:_wiki_Lois_Lane__New_Earth_ ;
+    mdcu:wife mdcu:_wiki_lois_lane__new_earth_ ;
     foaf:gender "male"@en ;
     foaf:name "Superman" .
 
@@ -115,16 +157,162 @@ mdcu:grandfather rdfs:subPropertyOf mdcu:relative .
 
 mdcu:grandmother rdfs:subPropertyOf mdcu:relative .
 
-<http://inf558.org/comics#https://www.imdb.com/title/tt4116284/> a mdcu:movie ;
+mdcu:mother rdfs:subPropertyOf mdcu:relative .
+
+mdcu:movie_tt4116284 a mdcu:movie ;
+    dbo:abstract "There are big changes brewing in Gotham City, and if he wants to save the city from The Joker's hostile takeover, Batman may have to drop the lone vigilante thing, try to work with others and maybe, just maybe, learn to lighten up." ;
+    mdcu:has_genre mdcu:genre_action,
+        mdcu:genre_animation,
+        mdcu:genre_comedy,
+        mdcu:genre_family ;
+    mdcu:key_word "based_on_comic_book",
+        "batmobile",
+        "dc_comics",
+        "lego",
+        "lobster" ;
+    mdcu:motion_picture_rating "PG" ;
     mdcu:movie_character_appearance mdcu:_wiki_Superman__Clark_Kent_,
         mdcu:_wiki_Batman__Bruce_Wayne_ ;
     mdcu:rating 7.3 ;
+    mdcu:release_date "2017-02-10"^^xsd:date ;
     foaf:name "The Lego Batman Movie" .
 
-mdcu:mother rdfs:subPropertyOf mdcu:relative .
+mdcu:role_colorist rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_cover rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_editor rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_inker rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_letterer rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_other rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_penciler rdfs:subPropertyOf mdcu:has_creator .
+
+mdcu:role_writer rdfs:subPropertyOf mdcu:has_creator .
 
 mdcu:son rdfs:subPropertyOf mdcu:relative .
 
 mdcu:uncle rdfs:subPropertyOf mdcu:relative .
 
 mdcu:wife rdfs:subPropertyOf mdcu:relative .
+
+mdcu:_alabama_4020-56096_ a schema:Place ;
+    rdfs:label "Alabama" .
+
+mdcu:_alex-sinclair_4040-9587_ a mdcu:creator ;
+    rdfs:label "Alex Sinclair" .
+
+mdcu:_andy-lanning_4040-7874_ a mdcu:creator ;
+    rdfs:label "Andy Lanning" .
+
+mdcu:_australia_4020-55838_ a schema:Place ;
+    rdfs:label "Australia" .
+
+mdcu:_daily-planet_4060-42195_ a mdcu:team ;
+    rdfs:label "Daily Planet" .
+
+mdcu:_dan-abnett_4040-41686_ a mdcu:creator ;
+    rdfs:label "Dan Abnett" .
+
+mdcu:_david-baron_4040-4700_ a mdcu:creator ;
+    rdfs:label "David Baron" .
+
+mdcu:_eddie-berganza_4040-41680_ a mdcu:creator ;
+    rdfs:label "Eddie Berganza" .
+
+mdcu:_everyman-project_4060-58798_ a mdcu:team ;
+    rdfs:label "Everyman Project" .
+
+mdcu:_geoff-johns_4040-40439_ a mdcu:creator ;
+    rdfs:label "Geoff Johns" .
+
+mdcu:_grant-morrison_4040-40434_ a mdcu:creator ;
+    rdfs:label "Grant Morrison" .
+
+mdcu:_greg-rucka_4040-41228_ a mdcu:creator ;
+    rdfs:label "Greg Rucka" .
+
+mdcu:_harvey-richards_4040-45305_ a mdcu:creator ;
+    rdfs:label "Harvey Richards" .
+
+mdcu:_hell_4020-42471_ a schema:Place ;
+    rdfs:label "Hell" .
+
+mdcu:_infinity-inc_4060-40384_ a mdcu:team ;
+    rdfs:label "Infinity, Inc." .
+
+mdcu:_jack-jadson_4040-3711_ a mdcu:creator ;
+    rdfs:label "Jack Jadson" .
+
+mdcu:_jeanine-schaefer_4040-45035_ a mdcu:creator ;
+    rdfs:label "Jeanine Schaefer" .
+
+mdcu:_jg-jones_4040-42268_ a mdcu:creator ;
+    rdfs:label "J.G. Jones" .
+
+mdcu:_joe-bennett_4040-1921_ a mdcu:creator ;
+    rdfs:label "Joe Bennett" .
+
+mdcu:_john-byrne_4040-1770_ a mdcu:creator ;
+    rdfs:label "John Byrne" .
+
+mdcu:_las-vegas_4020-55734_ a schema:Place ;
+    rdfs:label "Las Vegas" .
+
+mdcu:_manchester-alabama_4020-57198_ a schema:Place ;
+    rdfs:label "Manchester, Alabama" .
+
+mdcu:_mark-nelson_4040-3707_ a mdcu:creator ;
+    rdfs:label "Mark Nelson" .
+
+mdcu:_mark-waid_4040-40724_ a mdcu:creator ;
+    rdfs:label "Mark Waid" .
+
+mdcu:_nevada_4020-55779_ a schema:Place ;
+    rdfs:label "Nevada" .
+
+mdcu:_rob-leigh_4040-4519_ a mdcu:creator ;
+    rdfs:label "Rob Leigh" .
+
+mdcu:_stephen-wacker_4040-41929_ a mdcu:creator ;
+    rdfs:label "Stephen Wacker" .
+
+mdcu:_teen-titans_4060-19081_ a mdcu:team ;
+    rdfs:label "Teen Titans" .
+
+mdcu:_the-titans_4060-50386_ a mdcu:team ;
+    rdfs:label "The Titans" .
+
+mdcu:_travis-lanham_4040-41795_ a mdcu:creator ;
+    rdfs:label "Travis Lanham" .
+
+mdcu:genre_action a mdcu:genre ;
+    rdfs:label "Action" .
+
+mdcu:genre_animation a mdcu:genre ;
+    rdfs:label "Animation" .
+
+mdcu:genre_comedy a mdcu:genre ;
+    rdfs:label "Comedy" .
+
+mdcu:genre_family a mdcu:genre ;
+    rdfs:label "Family" .
+
+mdcu:_dan-didio_4040-51584_ a mdcu:creator ;
+    rdfs:label "Dan DiDio" .
+
+mdcu:_dan-jurgens_4040-4321_ a mdcu:creator ;
+    rdfs:label "Dan Jurgens" .
+
+mdcu:_keith-giffen_4040-6536_ a mdcu:creator ;
+    rdfs:label "Keith Giffen" .
+
+mdcu:_metropolis_4020-41184_ a schema:Place ;
+    rdfs:label "Metropolis" .
+
+mdcu:_wayne-faucher_4040-1679_ a mdcu:creator ;
+    rdfs:label "Wayne Faucher" .
+
