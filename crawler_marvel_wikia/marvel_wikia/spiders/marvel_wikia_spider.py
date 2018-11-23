@@ -21,16 +21,21 @@ from scrapy.spiders import Rule
 NUM_OF_REQ_BS_IN_URL = 5
 NUM_OF_REQ_QM_IN_URL = 1
 
+RELEVANT_LINKS_XPATHS = ['//*[@id="mw-content-text"]/div[3]', \
+                         '//*[@id="mw-content-text"]/div[4]', \
+                         '//*[@id="mw-content-text"]/div[5]']
+
 # MARVELWIKIA-Spider class
 class MARVELWIKIASpider(scrapy.Spider):
-    name = "marvel_wikia"
+    name = "marvel_wikia_fo"
     allowed_domains = ['marvel.wikia.com']
     wfilename = 'marvel_wikia_chars__%s.filtered.jl' % str(datetime.datetime.now()).split(' ')[0]
     wfile_handle = open(wfilename, "w")
+    dump_filename = 'marvel_chars__%s.dump.txt' % str(datetime.datetime.now()).split(' ')[0]
+    dump_wfile_handle = open(dump_filename, "w")
     # incremental unique identifier counter (maps to 'doc_id' in output file)
     uniq_id = 0
     # REGEX for issue-pages filtering
-    reg_ptrn = re.compile("http?:\/\/marvel\.wikia\.com\/.*(\(Earth-616\)|Category\:Earth\-616\_Characters).*")
 
     # URL seed initiate list
     def start_requests(self):
@@ -50,13 +55,14 @@ class MARVELWIKIASpider(scrapy.Spider):
         num_of_bs_in_url = len(page_url.split('/'))
         num_of_qm_in_url = len(page_url.split('?'))
         # check if the page is according to defined REGEX
-        if self.reg_ptrn.match(page_url) and not(NUM_OF_REQ_BS_IN_URL != num_of_bs_in_url or \
+        if not(NUM_OF_REQ_BS_IN_URL != num_of_bs_in_url or \
                                                  NUM_OF_REQ_QM_IN_URL != num_of_qm_in_url or \
-                                                 'File:' in page_url):
+                                                 'File:' in page_url or 'Category:' in page_url):
             # generate timestamp field
             timestamp_str = str(datetime.datetime.now())
             # debug print (in INFO logging mode)
             self.logger.info('[%05d][%s]: %s' % (self.uniq_id, timestamp_str, page_url))
+            # self.dump_wfile_handle.write('%s\n' % (page_url))
             # output to file
             temp_dict_out = OrderedDict()
             temp_dict_out['doc_id'] = self.uniq_id
@@ -68,9 +74,15 @@ class MARVELWIKIASpider(scrapy.Spider):
             self.wfile_handle.write(temp_string + '\n')
             # increase the unique identifier
             self.uniq_id += 1
-        # extract follow-up urls from response
-        for url in response.xpath('//a/@href').extract():
-            # make sure to get full-path and not relative-path
-            next_page = response.urljoin(url)
-            if self.reg_ptrn.match(next_page):
-                yield scrapy.Request(next_page, callback=self.parse)
+        if 'Category:' in page_url:
+            for xpath in RELEVANT_LINKS_XPATHS:
+                #self.dump_wfile_handle.write('-page_url=%s, xpath=%s\n' % (page_url, xpath))
+                for concat in ['//a/@href', '/a/@href']:
+                    xpath_concat = xpath + concat
+                    #self.dump_wfile_handle.write('--xpath_concat=%s\n' % (xpath_concat))
+                    # extract follow-up urls from response
+                    for url in response.xpath(xpath_concat).extract():
+                        # make sure to get full-path and not relative-path
+                        next_page = response.urljoin(url)
+                        self.dump_wfile_handle.write('%s\n' % (next_page))
+                        yield scrapy.Request(next_page, callback=self.parse)
