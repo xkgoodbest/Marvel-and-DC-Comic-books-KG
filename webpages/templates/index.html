@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marvel and DC Comic Books KG</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/basics.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+<!--             <li role="presentation" ><a href="main">Home</a></li>
+            <li role="presentation"><a href="#">Sparql Query</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li> -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Marvel and DC Comic Books KG</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <form name="query" action="/query" method="POST">
+        <label for="sparql" class="sr-only">Sparql Query</label>
+
+        <textarea class="form-control" type="name" name="sparql" rows="6"></textarea>
+        <button type="submit" id="btnSearch" class="btn btn-lg btn-primary btn-block" type="button">Query</button>
+
+          <table class="table" border=1>
+            <thead class="thead-dark">
+            <tr>
+                {% for k in key%}
+                    <th scope="col"> {{ k }} </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for k in result%}
+            <tr>
+               {% for value in k%}
+                    <td> {{value}} </td>
+               {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+        <p>&copy; Basel, Ke</p>
+      </footer>
+ 
+    </div>
+  </body>
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
+</html>
