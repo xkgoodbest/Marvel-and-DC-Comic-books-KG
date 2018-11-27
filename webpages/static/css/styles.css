@@ -1,6 +1,6 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-@import url("https://fonts.googleapis.com/css?family=Pacifico");
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 body {
   padding-top: 20px;
@@ -69,7 +69,7 @@ p {
 #logo_h2 {
   padding: 10px;
   font-size: 1.4em;
-  font-family: 'Pacifico', cursive;
+  font-family: 'Indie Flower', cursive;
   vertical-align: middle;
   text-align: center;
   float: left;
@@ -80,8 +80,8 @@ p {
   text-decoration: none;
 }
 
-.pacifico {
-  font-family: 'Pacifico', cursive;
+.myfancyfont {
+  font-family: 'Indie Flower', cursive;
 }
 
 footer {

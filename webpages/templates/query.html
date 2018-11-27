@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+      <h1 class="myfancyfont">Generate a manual SPARQL query!</h1>
+
+      <div class="jumbotron">
+        <form name="query" action="/query" method="POST">
+          <label for="sparql" class="sr-only">Sparql Query</label>
+          <textarea class="form-control" type="name" name="sparql" rows="6"></textarea>
+          </br>
+          <button type="submit" id="btnSearch" class="btn btn-lg btn-primary btn-block" type="button">Query</button>
+          </br>
+          <table class="table" border=1>
+            <thead>
+              <tr>
+                  {% for k in key%}
+                      <th scope="col" class="text-center danger"> {{ k }} </th>
+                  {% endfor %}
+              </tr>
+            </thead>
+              <tbody>
+              {% for k in result%}
+              <tr>
+                 {% for value in k%}
+                      <td> {{value}} </td>
+                 {% endfor %}
+              </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+        </form>
+      </div>
+{% endblock %}

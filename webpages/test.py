@@ -14,13 +14,16 @@ sparql.setReturnFormat(JSON)
 def output():
     return render_template('index.html')
 
+@app.route('/query')
+def query_no_res():
+    return render_template('query.html', title='Query')
+
 @app.route('/query', methods=['POST'])
 def query():
-
     # read the posted values from the UI
     _sparql = request.form['sparql']
     print(_sparql)
-    if _sparql :
+    if _sparql:
         sparql_q_pre = """
             prefix md: <http://www.w3.org/ns/md#>
             prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -44,9 +47,7 @@ def query():
             for k in keys:
                 re.append(results["results"]["bindings"][i][k]['value'])
             ret.append(re)
-        return render_template('index.html', key=keys,result=ret)
+        return render_template('query.html', title='Query', key=keys, result=ret)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-

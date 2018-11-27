@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+      <title>{{ title }} - Marvel and DC Comic Books KG</title>
+    {% else %}
+      <title>Marvel and DC Comic Books KG</title>
+    {% endif %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" type="text/css" media="all">
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/myicon.png')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span>
+              <a id="logo_h2" href="/"><span style="color:#33cccc">Marvel and DC Comic Books KG</span></a>
+            </span>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/query">Manual SPARQL Query</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container center">
+      {% block content %}{% endblock %}
+      <footer class="footer">
+        <small>© 2018 Basel Shbita, Ke Xu</small>
+      </footer>
+    </div>
+  </body>
+</html>
