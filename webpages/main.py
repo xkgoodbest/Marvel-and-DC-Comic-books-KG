@@ -81,6 +81,12 @@ def query():
             ret.append(re)
         return render_template('query.html', title='Query', key=keys, result=ret)
 
+
+@app.route('/description', methods=['POST'])
+def description():
+    
+        return render_template('description.html')
+
 def return_main_page_with_filters(cclass, cpredicate_clean, pred_opts):
     cpredicate = '<' + cpredicate_clean + '>'
     labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
