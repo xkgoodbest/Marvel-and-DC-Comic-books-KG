@@ -20,6 +20,7 @@ SPARQL_PREFIXES = """
 
             """
 COLORS_LIST = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC"]
+CLASS_OPTS = ["mdcu:character", "mdcu:issue", "mdcu:movie"]
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -28,21 +29,54 @@ sparql.setReturnFormat(JSON)
 
 @app.route('/')
 def output():
-    pred_char = get_avilable_properties_for_class("mdcu:character")
-    #labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "dbp:publisher")
-    labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "schema:birthPlace")
+    cclass = CLASS_OPTS[0]
+    pred_opts = get_avilable_properties_for_class(cclass)
+    cpredicate_clean = pred_opts[1]
+    cpredicate = '<' + cpredicate_clean + '>'
+
+    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
     max_val = cast_and_find_max(values)
-    return render_template('filter_top.html', chart_viz=True, dropdown=pred_char,  pred="schema:birthPlace",
+    return render_template('index.html', chart_viz=True, 
+        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
+        selectedclass=cclass, selectedattr=cpredicate_clean,
+        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
+
+@app.route('/refreshfiltertop', methods=['GET'])
+def refresh_filter_top_results():
+
+    # chosen_class has changed, need to re-generate the form
+    cclass = request.args.get('chosen_class')
+
+    # since chose_class has change, we cannot take the 'chosen_attr', it doesn't match, take 1st option
+    pred_opts = get_avilable_properties_for_class(cclass)
+    cpredicate_clean = pred_opts[1]
+    cpredicate = '<' + cpredicate_clean + '>'
+
+    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
+    max_val = cast_and_find_max(values)
+
+    return render_template('index.html', chart_viz=True, 
+        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
+        selectedclass=cclass, selectedattr=cpredicate_clean,
         set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 @app.route('/filtertop', methods=['GET'])
 def filter_top_results():
-    predicate = '<' + request.args.get('char_chosen_attr') + '>'
-    class_opts = ["mdcu:character", "mdcu:issue", "mdcu:movie"]
-    pred_char = get_avilable_properties_for_class(class_opts[0])
-    labels, values = get_top_labels_values_for_class_predicate(class_opts[0], predicate)
+    # take chosen class
+    cclass = request.args.get('chosen_class')
+    pred_opts = get_avilable_properties_for_class(cclass)
+    # take chosen attribute
+    cpredicate_clean = request.args.get('chosen_attr')
+    cpredicate = '<' + cpredicate_clean + '>'
+
+    #labels, values = [],[]
+    #max_val = 10
+    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
     max_val = cast_and_find_max(values)
-    return render_template('filter_top.html', chart_viz=True, dropdown=pred_char, pred=predicate,
+
+    return render_template('index.html', chart_viz=True, 
+        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
+        selectedclass=cclass, selectedattr=cpredicate_clean,
         set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 @app.route('/query')

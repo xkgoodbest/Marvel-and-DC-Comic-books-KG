@@ -6,71 +6,93 @@
 
 <h2>This system was built as part of the <b>INF 558/CSCI 563: Building Knowledge Graphs</b> class @ <a href="https://www.cs.usc.edu/" target="_blank">University of Southern California</a></h2>
 
+<h1 class="myfancyfont">Top Results of <span style="color:purple">{{selectedattr}}</span></br> for <span style="color:blue">{{selectedclass}}</span></h1>
 
-<h1 class="myfancyfont">Publisher Distribution</a></h2>
+<form name="top_res" action="/refreshfiltertop" method="GET">
+  <span>Choose a class:</span>
+  <select name="chosen_class" onchange="this.form.submit()">
+    {% for drop_itm in classdropdown %}
+        {% if selectedclass == drop_itm %}
+    <option value="{{drop_itm}}" SELECTED>{{drop_itm}}</option>
+        {% else %}
+    <option value="{{drop_itm}}">{{drop_itm}}</option>
+        {% endif %}
+    {% endfor %}
+  </select>
+</form>
+<form name="top_res" action="/filtertop" method="GET">
+  <span>Choose a property you'd like to see its top results:</span>
+  <input type="hidden" name="chosen_class" value="{{selectedclass}}"/>
+  <select name="chosen_attr" onchange="this.form.submit()">
+    {% for drop_itm in attrdropdown %}
+        {% if selectedattr == drop_itm %}
+    <option value="{{drop_itm}}" SELECTED>{{drop_itm}}</option>
+        {% else %}
+    <option value="{{drop_itm}}">{{drop_itm}}</option>
+        {% endif %}
+    {% endfor %}
+  </select>
+</form>
 
-<!-- bar chart canvas element -->
-<canvas id="piechart01" width="600" height="400"></canvas>
-<script>
-   var pieData = [
-            {% for item,label,colors in set %}
-                {
-                    value: {{item}},
-                    label: "{{label}}",
-                    color : "{{colors}}"
-                },
-                {% endfor %}
- 
- 
-         ];
- 
-   // get bar chart canvas
-   var mychart = document.getElementById("piechart01").getContext("2d");
- 
-   steps = 10
-   max = 10
-   // draw pie chart
-   new Chart(document.getElementById("piechart01").getContext("2d")).Pie(pieData);
-</script>
-
-<!-- bar chart canvas element -->
-<canvas id="barchart02" width="600" height="400"></canvas>
-<script>
-   // bar chart data
-   var barData = {
-   labels : [{% for item in labels %}
-                  "{{item}}",
-              {% endfor %}],
-   datasets : [
-      {
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-         data : [{% for item in values %}
-                      {{item}},
-                    {% endfor %}]
-      }
-      ]
-   }
- 
-   // get bar chart canvas
-   var mychart = document.getElementById("barchart02").getContext("2d");
- 
-   // TODO: change to params, not hard-coded
-   steps = 10
-   max = {{max_val}}
-   // draw bar chart
-   new Chart(mychart).Bar(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true
-   });
- 
-</script>
+<table class="table">
+  <tr>
+    <td>
+      <!-- bar chart canvas element -->
+      <canvas id="piechart01" width="300" height="300"></canvas>
+      <script>
+         var pieData = [
+                  {% for item,label,colors in set %}
+                      {
+                          value: {{item}},
+                          label: "{{label}}",
+                          color : "{{colors}}"
+                      },
+                      {% endfor %}
+               ];
+         // get bar chart canvas
+         var mychart = document.getElementById("piechart01").getContext("2d");
+         // draw pie chart
+         new Chart(mychart).Pie(pieData);
+      </script>
+    </td>
+    <td>
+      <!-- bar chart canvas element -->
+      <canvas id="barchart02" width="400" height="800"></canvas>
+      <script>
+         // bar chart data
+         var barData = {
+         labels : [{% for item in labels %}
+                        "{{item}}",
+                    {% endfor %}],
+         datasets : [
+            {
+                  fillColor: "rgba(151,187,205,0.2)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+               data : [{% for item in values %}
+                            {{item}},
+                          {% endfor %}]
+            }
+            ]
+         }
+         // get bar chart canvas
+         var mychart = document.getElementById("barchart02").getContext("2d");
+         steps = 10
+         max = {{max_val}}
+         // draw bar chart
+         new Chart(mychart).Bar(barData, {
+              scaleOverride: true,
+              scaleSteps: steps,
+              scaleStepWidth: Math.ceil(max / steps),
+              scaleStartValue: 0,
+              scaleShowVerticalLines: true,
+              scaleShowGridLines : true,
+              barShowStroke : true,
+              scaleShowLabels: true
+         });
+      </script>
+    </td>
+  </tr>
+</table>
 
 {% endblock %}
