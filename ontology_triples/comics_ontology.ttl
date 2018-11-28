@@ -45,7 +45,7 @@ mdcu:issue a rdfs:Class ;
     dbp:publisher                   schema:Text             ;
     foaf:name                       schema:Text             ;
     mdcu:volume                     schema:Text             ;
-    mdcu:issue_number               xsd:integer             ;
+    mdcu:issue_number               xsd:decimal             ;
     mdcu:cover_date                 xsd:date                ;
     mdcu:in_store_date              xsd:date                ;
     mdcu:issue_character_appearance mdcu:character          ;
@@ -180,7 +180,7 @@ mdcu:volume a rdf:Property ;
 mdcu:issue_number a rdf:Property ;
     rdfs:label  "Issue Number"@en ;
     rdfs:domain mdcu:issue  ;
-    rdfs:range  xsd:integer .
+    rdfs:range  xsd:decimal .
 
 mdcu:cover_date a rdf:Property ;
     rdfs:label  "Cover Date"@en     ;
@@ -228,7 +228,7 @@ mdcu:release_date a rdf:Property ;
     rdfs:range  xsd:date            .
 
 mdcu:movie_character_appearance a rdf:Property ;
-    rdfs:label  "Release Date"@en   ;
+    rdfs:label  "Character appearance in Movie"@en   ;
     rdfs:domain mdcu:movie          ;
     rdfs:range  mdcu:character      .
 
