@@ -21,6 +21,10 @@ SPARQL_PREFIXES = """
             """
 COLORS_LIST = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC"]
 CLASS_OPTS = ["mdcu:character", "mdcu:issue", "mdcu:movie"]
+# this is used for the default view
+CLASS_ATTR_BEST_OPT = {CLASS_OPTS[0]: 1, 
+                       CLASS_OPTS[1]: 1, 
+                       CLASS_OPTS[2]: 0}
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -29,36 +33,21 @@ sparql.setReturnFormat(JSON)
 
 @app.route('/')
 def output():
+    # take default class
     cclass = CLASS_OPTS[0]
     pred_opts = get_avilable_properties_for_class(cclass)
-    cpredicate_clean = pred_opts[1]
-    cpredicate = '<' + cpredicate_clean + '>'
-
-    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
-    max_val = cast_and_find_max(values)
-    return render_template('index.html', chart_viz=True, 
-        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
-        selectedclass=cclass, selectedattr=cpredicate_clean,
-        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
+    # take 'default' option
+    cpredicate_clean = pred_opts[CLASS_ATTR_BEST_OPT[cclass]]
+    return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
 
 @app.route('/refreshfiltertop', methods=['GET'])
 def refresh_filter_top_results():
-
     # chosen_class has changed, need to re-generate the form
     cclass = request.args.get('chosen_class')
-
-    # since chose_class has change, we cannot take the 'chosen_attr', it doesn't match, take 1st option
+    # since chose_class has change, we cannot take the 'chosen_attr', it doesn't match, take 'default' option
     pred_opts = get_avilable_properties_for_class(cclass)
-    cpredicate_clean = pred_opts[1]
-    cpredicate = '<' + cpredicate_clean + '>'
-
-    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
-    max_val = cast_and_find_max(values)
-
-    return render_template('index.html', chart_viz=True, 
-        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
-        selectedclass=cclass, selectedattr=cpredicate_clean,
-        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
+    cpredicate_clean = pred_opts[CLASS_ATTR_BEST_OPT[cclass]]
+    return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
 
 @app.route('/filtertop', methods=['GET'])
 def filter_top_results():
@@ -67,17 +56,7 @@ def filter_top_results():
     pred_opts = get_avilable_properties_for_class(cclass)
     # take chosen attribute
     cpredicate_clean = request.args.get('chosen_attr')
-    cpredicate = '<' + cpredicate_clean + '>'
-
-    #labels, values = [],[]
-    #max_val = 10
-    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
-    max_val = cast_and_find_max(values)
-
-    return render_template('index.html', chart_viz=True, 
-        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
-        selectedclass=cclass, selectedattr=cpredicate_clean,
-        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
+    return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
 
 @app.route('/query')
 def query_no_res():
@@ -101,6 +80,15 @@ def query():
                     re.append((results["results"]["bindings"][i][k]['value'],False))
             ret.append(re)
         return render_template('query.html', title='Query', key=keys, result=ret)
+
+def return_main_page_with_filters(cclass, cpredicate_clean, pred_opts):
+    cpredicate = '<' + cpredicate_clean + '>'
+    labels, values = get_top_labels_values_for_class_predicate(cclass, cpredicate)
+    max_val = cast_and_find_max(values)
+    return render_template('index.html', chart_viz=True, 
+        classdropdown=CLASS_OPTS, attrdropdown=pred_opts,
+        selectedclass=cclass, selectedattr=cpredicate_clean,
+        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
     _sparql = """
