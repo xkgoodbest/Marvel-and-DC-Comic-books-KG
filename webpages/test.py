@@ -52,7 +52,10 @@ def query():
         for i in range(len(results["results"]["bindings"])):
             re=list()
             for k in keys:
-                re.append(results["results"]["bindings"][i][k]['value'])
+                if results["results"]["bindings"][i][k]['type']=='uri':
+                    re.append((results["results"]["bindings"][i][k]['value'],True))
+                else:
+                    re.append((results["results"]["bindings"][i][k]['value'],False))
             ret.append(re)
         return render_template('query.html', title='Query', key=keys, result=ret)
 
