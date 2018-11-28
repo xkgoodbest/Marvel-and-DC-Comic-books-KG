@@ -28,9 +28,13 @@ sparql.setReturnFormat(JSON)
 
 @app.route('/')
 def output():
-    labels, values = get_publisher_labels_values()
+    pred_char = get_avilable_properties_for_class("mdcu:character")
+    #labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "dbp:publisher")
+
+    labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "schema:birthPlace")
+    max_val = max(values)
     colors = COLORS_LIST
-    return render_template('index.html', chart_viz=True, set=zip(values, labels, colors), values=values, labels=labels)
+    return render_template('index.html', chart_viz=True, set=zip(values, labels, colors), values=values, labels=labels, max_val=max_val)
 
 @app.route('/query')
 def query_no_res():
@@ -52,16 +56,18 @@ def query():
             ret.append(re)
         return render_template('query.html', title='Query', key=keys, result=ret)
 
-def get_publisher_labels_values():
+def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
     _sparql = """
             SELECT ?var (count(?subject) as ?count)
             WHERE {
-              ?subject a mdcu:character ;
-                       dbp:publisher ?var .
+              ?subject a %s ;
+                       %s ?var .
             }
             GROUP BY ?var
             ORDER BY DESC(?count)
-            """
+            LIMIT 10
+            """ % (class_uri, predicate_uri)
+    print(_sparql)
     sparql.setQuery(SPARQL_PREFIXES + _sparql)
     results = sparql.query().convert()
     keys = results["results"]["bindings"][0].keys()
@@ -75,6 +81,32 @@ def get_publisher_labels_values():
             else:
                 values.append(curr_val)
     return labels, values
+
+def get_avilable_properties_for_class(class_uri):
+    _sparql = """
+            SELECT DISTINCT ?predicate
+            WHERE {
+              ?subject a %s ;
+                       ?predicate ?var .
+              FILTER NOT EXISTS {
+                FILTER regex(str(?predicate), "relative")
+              }
+            }
+            """ % (class_uri)
+    sparql.setQuery(SPARQL_PREFIXES + _sparql)
+    results = sparql.query().convert()
+    keys = results["results"]["bindings"][0].keys()
+    int_results = results["results"]["bindings"]
+    
+    predicates = []
+    for i in range(len(int_results)):
+        for k in keys:
+            curr_val = int_results[i][k]['value']
+            predicates.append(curr_val)
+    
+    return predicates
+
+# TODO: avoid error in case of no results...
 
 if __name__ == '__main__':
     app.run(debug=True)
