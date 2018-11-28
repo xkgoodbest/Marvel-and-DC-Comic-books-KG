@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+      <script type="text/javascript">
+        function toDescription(e){
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/description", true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({
+              "uri": e
+          }));
+        }
+      </script>
       <h1 class="myfancyfont">Generate a manual SPARQL query!</h1>
 
       <div class="jumbotron">
@@ -22,7 +32,9 @@
               <tr>
                  {% for value in k%}
                     {% if value[1]==True %}
-                    <td><a href="/description">{{value[0]}}</a> </td>
+                    <td><a onclick="toDescription('{{value[0]}}')" id={{value[0]}} >
+                      {{value[0]}}
+                    </a> </td>
                     {% else %}
                     <td>{{value[0]}}</td>
                     {% endif %}
@@ -33,4 +45,5 @@
           </table>
         </form>
       </div>
+      
 {% endblock %}
