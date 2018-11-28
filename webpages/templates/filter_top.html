@@ -6,14 +6,14 @@
 
 <h2>This system was built as part of the <b>INF 558/CSCI 563: Building Knowledge Graphs</b> class @ <a href="https://www.cs.usc.edu/" target="_blank">University of Southern California</a></h2>
 
-<h1 class="myfancyfont">Top Results of <span id="predicate1" style="color:purple">{{pred1}}</span></h1>
+<h1 class="myfancyfont">Top Results of <span id="predicate1" style="color:purple">{{pred}}</span></h1>
 
 <form name="char_top" action="/filtertop" method="GET">
   <span>Choose a different property you'd like to see its top results:</span>
   <select name="char_chosen_attr" onchange="this.form.submit()">
-      <option value="" SELECTED></option>"
-    {% for drop_itm in dropdown1 %}
-      <option value="{{drop_itm}}">{{drop_itm}}</option>"
+    <option value="" SELECTED></option>"
+    {% for drop_itm in dropdown %}
+    <option value="{{drop_itm}}">{{drop_itm}}</option>"
     {% endfor %}
   </select>
 </form>
@@ -33,14 +33,10 @@
                       },
                       {% endfor %}
                ];
-       
          // get bar chart canvas
          var mychart = document.getElementById("piechart01").getContext("2d");
-       
-         steps = 10
-         max = 10
          // draw pie chart
-         new Chart(document.getElementById("piechart01").getContext("2d")).Pie(pieData);
+         new Chart(mychart).Pie(pieData);
       </script>
     </td>
     <td>
@@ -63,11 +59,8 @@
             }
             ]
          }
-       
          // get bar chart canvas
          var mychart = document.getElementById("barchart02").getContext("2d");
-       
-         // TODO: change to params, not hard-coded
          steps = 10
          max = {{max_val}}
          // draw bar chart

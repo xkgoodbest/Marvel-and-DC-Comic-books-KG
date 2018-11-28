@@ -32,7 +32,7 @@ def output():
     #labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "dbp:publisher")
     labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "schema:birthPlace")
     max_val = cast_and_find_max(values)
-    return render_template('filter_top.html', chart_viz=True, dropdown1=pred_char,  pred1="schema:birthPlace",
+    return render_template('filter_top.html', chart_viz=True, dropdown=pred_char,  pred="schema:birthPlace",
         set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 @app.route('/filtertop', methods=['GET'])
@@ -42,7 +42,7 @@ def filter_top_results():
     pred_char = get_avilable_properties_for_class(class_opts[0])
     labels, values = get_top_labels_values_for_class_predicate(class_opts[0], predicate)
     max_val = cast_and_find_max(values)
-    return render_template('filter_top.html', chart_viz=True, dropdown1=pred_char, pred1=predicate,
+    return render_template('filter_top.html', chart_viz=True, dropdown=pred_char, pred=predicate,
         set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 @app.route('/query')
@@ -116,7 +116,6 @@ def get_avilable_properties_for_class(class_uri):
             predicates.append(curr_val)
     
     return predicates
-
 
 def cast_and_find_max(strlist):
     max_val = 0
