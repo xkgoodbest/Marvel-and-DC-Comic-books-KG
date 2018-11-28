@@ -9,9 +9,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" type="text/css" media="all">
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/myicon.png')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% if chart_viz %}
+      <script src="{{url_for('static', filename='viz/chart.min.js')}}"></script>
+    {% endif %}
   </head>
   <body>
     <header>
