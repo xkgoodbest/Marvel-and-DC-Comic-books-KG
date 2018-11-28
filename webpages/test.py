@@ -30,11 +30,20 @@ sparql.setReturnFormat(JSON)
 def output():
     pred_char = get_avilable_properties_for_class("mdcu:character")
     #labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "dbp:publisher")
-
     labels, values = get_top_labels_values_for_class_predicate("mdcu:character", "schema:birthPlace")
-    max_val = max(values)
-    colors = COLORS_LIST
-    return render_template('index.html', chart_viz=True, set=zip(values, labels, colors), values=values, labels=labels, max_val=max_val)
+    max_val = cast_and_find_max(values)
+    return render_template('filter_top.html', chart_viz=True, dropdown1=pred_char,  pred1="schema:birthPlace",
+        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
+
+@app.route('/filtertop', methods=['GET'])
+def filter_top_results():
+    predicate = '<' + request.args.get('char_chosen_attr') + '>'
+    class_opts = ["mdcu:character", "mdcu:issue", "mdcu:movie"]
+    pred_char = get_avilable_properties_for_class(class_opts[0])
+    labels, values = get_top_labels_values_for_class_predicate(class_opts[0], predicate)
+    max_val = cast_and_find_max(values)
+    return render_template('filter_top.html', chart_viz=True, dropdown1=pred_char, pred1=predicate,
+        set=zip(values, labels, COLORS_LIST), values=values, labels=labels, max_val=max_val)
 
 @app.route('/query')
 def query_no_res():
@@ -70,7 +79,6 @@ def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
             ORDER BY DESC(?count)
             LIMIT 10
             """ % (class_uri, predicate_uri)
-    print(_sparql)
     sparql.setQuery(SPARQL_PREFIXES + _sparql)
     results = sparql.query().convert()
     keys = results["results"]["bindings"][0].keys()
@@ -108,6 +116,15 @@ def get_avilable_properties_for_class(class_uri):
             predicates.append(curr_val)
     
     return predicates
+
+
+def cast_and_find_max(strlist):
+    max_val = 0
+    for currstr in strlist:
+        currnum = int(currstr)
+        if currnum > max_val:
+            max_val = currnum
+    return max_val
 
 # TODO: avoid error in case of no results...
 
