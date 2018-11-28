@@ -3,6 +3,7 @@ import rdflib
 import calendar
 import re
 from rdflib import BNode, URIRef, Literal, XSD, Namespace, RDF, RDFS
+from analyze_img import *
 
 DC_COMICS_PUB_ID = '_dc-comics_4010-10_'
 MARVEL_PUB_ID = '_marvel_4010-31_'
@@ -18,6 +19,11 @@ bad_words_hair_eyes_cat = ['unknown', 'various', 'unrevealed', \
                            'eye', 'with', 'formerly', 'none', 'not', \
                            'variable', 'n/a', 'with', 'hair', 'varying', 'while']
 valid_marital_statuses = ['single', 'married', 'widow', 'divorced', 'separated', 'engaged', 'dating']
+valid_relative_predicates = ['father', 'mother', 'son', 'daughter', 'brother', 'sister',\
+                             'sibling', 'wife', 'husband', 'niece', 'nephew', \
+                             'cousin', 'aunt', 'uncle', 'grandfather', \
+                             'grandmother', 'parent', 'grandson', \
+                             'granddaughter', 'spouse', 'partner', 'guardian']
 
 SCHEMA = Namespace('http://schema.org/')
 FOAF = Namespace('http://xmlns.com/foaf/0.1/')
@@ -95,6 +101,7 @@ class ComicsGraph:
         self.triples.bind('mdcu', MDCU)
 
     def add_character(self, cdict):
+        global counter
         char_uri = URIRef(MDCU[compile_string_as_uri(cdict['id'])])
         self.triples.add((char_uri, RDF.type, MDCU['character']))
         for (key, val) in cdict.items():
@@ -213,17 +220,29 @@ class ComicsGraph:
                        'possible' in relative[1] or '&' in relative[1] or '?' in relative[1]:
                         continue
                     relative_uri = URIRef(MDCU[compile_string_as_uri(relative[0])])
-                    relative_relation_uri = URIRef(MDCU['relative_' + \
-                        compile_string_as_uri(get_first_split_by_vector_of_chars(relative[1], ['<', ';', ':']).replace("'",''))])
+                    clean_relation = compile_string_as_uri(get_first_split_by_vector_of_chars(relative[1], ['<', ';', ':']).replace("'",''))
+                    found_relation_in_valid_list = False
+                    if '' == clean_relation:
+                        continue
+                    for vrel in valid_relative_predicates:
+                        if vrel in clean_relation:
+                            vrel_uri = vrel
+                            found_relation_in_valid_list = True
+                            break
+                    if False == found_relation_in_valid_list:
+                        continue
+                    if 'in_law' in clean_relation:
+                        vrel_uri = vrel_uri + '_in_law'
+                    relative_relation_uri = URIRef(MDCU['relative_' + vrel_uri])
                     # add relative_relation as subproperty
                     self.triples.add((relative_relation_uri, RDFS.subPropertyOf, MDCU['relative']))
                     # link via new subproperty
                     self.triples.add((char_uri, relative_relation_uri, relative_uri))
             elif 'affiliations' == key:
-                # TODO: fix the #cite_note problem!!
                 for affiliation in val:
                     if '[' in affiliation[1]:
                         error_file_h.write("ERROR! '[' in AFFLIATION: '%s' (%s)\n" % (affiliation, char_uri))
+                        continue
                     affiliation_uri = URIRef(MDCU[compile_string_as_uri(affiliation[0].replace(':', '_'))])
                     # add affiliation (team) class
                     self.triples.add((affiliation_uri, RDF.type, MDCU['team']))
@@ -272,6 +291,21 @@ class ComicsGraph:
                 fa_date_str = curate_comicvine_date_field(val[1], char_uri)
                 if None != fa_date_str:
                     self.triples.add((char_uri, MDCU['first_appearance'], Literal(fa_date_str, datatype=XSD.date)))
+            elif 'image_url' == key and None != val:
+                print('[%d] downloading image: %s' % (counter, str(val)))
+                list_of_image_colors = analyze_image_colors(val)
+                for color in list_of_image_colors:
+                    color_txt = color[0][0]
+                    color_rgb = color[0][1]
+                    color_hex = '#%02x%02x%02x' % color_rgb
+                    color_uri = URIRef(MDCU['color_' + color_txt])
+                    self.triples.add((color_uri, RDF.type, MDCU['color']))
+                    self.triples.add((color_uri, RDFS.label, Literal(color_txt)))
+                    self.triples.add((color_uri, MDCU['red_val'], Literal(color_rgb[0], datatype=XSD.integer)))
+                    self.triples.add((color_uri, MDCU['green_val'], Literal(color_rgb[1], datatype=XSD.integer)))
+                    self.triples.add((color_uri, MDCU['blue_val'], Literal(color_rgb[2], datatype=XSD.integer)))
+                    self.triples.add((color_uri, MDCU['hex_val'], Literal(color_hex)))
+                    self.triples.add((char_uri, MDCU['has_color'], color_uri))
             elif 'trivia_facts' == key:
                 for tfact in val:
                     clean_tfact = strip_brackets_in_string(tfact)
@@ -303,20 +337,24 @@ class ComicsGraph:
                     self.triples.add((weakness_uri, RDFS.label, Literal(clean_weakness)))
                     # link character to weakness
                     self.triples.add((char_uri, MDCU['has_weakness'], weakness_uri))
+            elif 'prov_url' == key and None != val:
+                self.triples.add((char_uri, MDCU['provenance_url'], URIRef(val)))
 
     def add_comic_issue(self, cdict):
         cissue_uri = URIRef(MDCU['issue_' + compile_string_as_uri(cdict['id'])])
         self.triples.add((cissue_uri, RDF.type, MDCU['issue']))
+        cissue_name = ""
+        cissue_volume = ""
         for (key, val) in cdict.items():
             if 'publisher' == key and None != val:
-                if DC_COMICS_PUB_ID == val:
+                if DC_COMICS_PUB_ID == val[0]:
                     self.triples.add((cissue_uri, DBP['publisher'], DBR['DC_Comics']))
-                elif MARVEL_PUB_ID == val:
+                elif MARVEL_PUB_ID == val[0]:
                     self.triples.add((cissue_uri, DBP['publisher'], DBR['Marvel_Comics']))
             elif 'name' == key and None != val:
-                self.triples.add((cissue_uri, FOAF['name'], Literal(val)))
+                cissue_name = val
             elif 'volume' == key and None != val:
-                self.triples.add((cissue_uri, MDCU['volume'], Literal(val)))
+                cissue_volume = val
             elif 'issue_number' == key and None != val:
                 valid_issue_n = True
                 for cexeption in ['AU', '½']:
@@ -371,7 +409,19 @@ class ComicsGraph:
             elif 'score' == key and None != val:
                 self.triples.add((cissue_uri, MDCU['rating'], Literal(val, datatype=XSD.decimal)))
             elif 'abstract' == key and None != val:
+                if val in ["No description", "", ".", "-", "="]:
+                    break
                 self.triples.add((cissue_uri, DBO['abstract'], Literal(val)))
+        # we need to avoid empty names
+        if cissue_name != "" and cissue_volume != "":
+            self.triples.add((cissue_uri, FOAF['name'], Literal(cissue_name)))
+            self.triples.add((cissue_uri, MDCU['volume'], Literal(cissue_volume)))
+        elif cissue_name == "" and cissue_volume != "":
+            self.triples.add((cissue_uri, FOAF['name'], Literal(cissue_volume)))
+            self.triples.add((cissue_uri, MDCU['volume'], Literal(cissue_volume)))
+        elif cissue_name != "":
+            self.triples.add((cissue_uri, FOAF['name'], Literal(cissue_name)))
+
 
     def add_movie(self, cdict):
         cmovie_uri = URIRef(MDCU['movie_' + compile_string_as_uri(cdict['url'].split('?')[0].split("/")[-2].lower())])

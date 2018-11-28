@@ -38,7 +38,9 @@ mdcu:character a rdfs:Class ;
     mdcu:has_weakness       mdcu:weakness       ;
     mdcu:trivia_fact        schema:Text         ;
     mdcu:issue_appearance   mdcu:issue          ;
-    mdcu:movie_appearance   mdcu:movie          .
+    mdcu:movie_appearance   mdcu:movie          ;
+    mdcu:has_color          mdcu:color          ;
+    mdcu:provenance_url     schema:Text         .
 
 #### MDCU Comic Book Issue ####
 mdcu:issue a rdfs:Class ;
@@ -171,6 +173,16 @@ mdcu:movie_appearance a rdf:Property ;
     rdfs:domain mdcu:character          ;
     rdfs:range  mdcu:movie              .
 
+mdcu:has_color a rdf:Property ;
+    rdfs:label  "Has Color"@en  ;
+    rdfs:domain mdcu:character  ;
+    rdfs:range  mdcu:color      .
+
+mdcu:provenance_url a rdf:Property ;
+    rdfs:label  "Provenance URL"@en  ;
+    rdfs:domain mdcu:character  ;
+    rdfs:range  schema:Text .
+
 #### MDCU Comic Book Issue Properties ####
 mdcu:volume a rdf:Property ;
     rdfs:label  "Volume"@en ;
@@ -233,6 +245,13 @@ mdcu:movie_character_appearance a rdf:Property ;
     rdfs:range  mdcu:character      .
 
 #### MDCU Additional Classes ####
+mdcu:color a rdfs:Class ;
+    rdfs:label      "Color"@en  ;
+    mdcu:red_val    xsd:integer ;
+    mdcu:green_val  xsd:integer ;
+    mdcu:blue_val   xsd:integer ;
+    mdcu:hex_val    schema:Text .
+
 mdcu:alignment a rdfs:Class ;
     rdfs:label "Alignment"@en .
 
@@ -272,3 +291,23 @@ mdcu:has_member a rdf:Property ;
     rdfs:label  "Has Member"@en ;
     rdfs:domain mdcu:team  ;
     rdfs:range  mdcu:character .
+
+mdcu:red_val a rdf:Property ;
+    rdfs:label  "Red Color Value"@en ;
+    rdfs:domain mdcu:color  ;
+    rdfs:range  xsd:integer .
+
+mdcu:green_val a rdf:Property ;
+    rdfs:label  "Green Color Value"@en ;
+    rdfs:domain mdcu:color  ;
+    rdfs:range  xsd:integer .
+
+mdcu:blue_val a rdf:Property ;
+    rdfs:label  "Blue Color Value"@en ;
+    rdfs:domain mdcu:color  ;
+    rdfs:range  xsd:integer .
+
+mdcu:hex_val a rdf:Property ;
+    rdfs:label  "Hex Color"@en ;
+    rdfs:domain mdcu:color  ;
+    rdfs:range  schema:Text .
