@@ -94,8 +94,8 @@ def query():
 def description():
     uri = request.args.get('uri')
     keys_result = ['subject', 'predicate', 'object']
-    ret=get_all_attr(uri)
-    return render_template('description.html', key=keys_result,result = ret)
+    ret = get_all_attr(uri)
+    return render_template('description.html', key=keys_result, result=ret)
 
 
 def get_all_attr(uri):
@@ -114,9 +114,14 @@ def get_all_attr(uri):
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append(uri)
+            re.append((uri[1:-1], True))
             for k in key1:
-                re.append(results["results"]["bindings"][i][k]['value'])
+                if results["results"]["bindings"][i][k]['type'] == 'uri':
+                    re.append(
+                        (results["results"]["bindings"][i][k]['value'], True))
+                else:
+                    re.append(
+                        (results["results"]["bindings"][i][k]['value'], False))
             ret.append(re)
 
     _sparql2 = """
@@ -131,10 +136,17 @@ def get_all_attr(uri):
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append(uri)
-            re.append(results["results"]["bindings"][i]['subject']['value'])
-            re.append(uri)
-            re.append(results["results"]["bindings"][i]['object']['value'])
+            if results["results"]["bindings"][i]['subject']['type'] == 'uri':
+                re.append((results["results"]["bindings"][i]['subject']['value'],True))
+            
+            else:
+                re.append((results["results"]["bindings"][i]['subject']['value'],False))
+            re.append((uri[1:-1],True))
+            if results["results"]["bindings"][i]['object']['type'] == 'uri':
+                re.append((results["results"]["bindings"][i]['object']['value'],True))
+            
+            else:
+                re.append((results["results"]["bindings"][i]['object']['value'],False))
             ret.append(re)
     key3 = ['subject', 'predicate']
     _sparql3 = """
@@ -150,8 +162,11 @@ def get_all_attr(uri):
         for i in range(len(results["results"]["bindings"])):
             re = list()
             for k in key3:
-                re.append(results["results"]["bindings"][i][k]['value'])
-            re.append(uri)
+                if results["results"]["bindings"][i][k]['type'] == 'uri':
+                    re.append((results["results"]["bindings"][i][k]['value'],True))
+                else:
+                    re.append((results["results"]["bindings"][i][k]['value'],False))
+            re.append((uri[1:-1],True))
             ret.append(re)
     return ret
 
