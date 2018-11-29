@@ -28,7 +28,6 @@ ISSUE_CHARS_DICT --> WIKIA_CHARS_DICT
 MOVIE_CHARS_DICT = dict()
 ISSUE_CHARS_DICT = dict()
 WIKIA_CHARS_DICT = dict()
-
 SIM_CHARS__MOVIE_TO_WIKIA = dict()
 SIM_CHARS__ISSUE_TO_WIKIA = dict()
 
@@ -37,11 +36,14 @@ ISSUE_TEAMS_DICT --> WIKIA_TEAMS_DICT
 '''
 ISSUE_TEAMS_DICT = dict()
 WIKIA_TEAMS_DICT = dict()
+SIM_TEAMS__ISSUE_TO_WIKIA = dict()
+
 '''
 ISSUE_LOCATIONS_DICT --> WIKIA_LOCATIONS_DICT
 '''
 ISSUE_LOCATIONS_DICT = dict()
 WIKIA_LOCATIONS_DICT = dict()
+SIM_LOCATIONS__ISSUE_TO_WIKIA = dict()
 
 ####################################### EXTRACTION TO JSON #######################################
 
@@ -329,20 +331,52 @@ class WikiaCharRecord(rltk.Record):
         tokens = tokenize(str(self.full_name_string) + ' ' + str(self.full_real_name_string))
         return set(tokens)
 
+class TeamRecord(rltk.Record):
+    def __init__(self, raw_object):
+        super().__init__(raw_object)
+        self.name = ''
+    @rltk.cached_property
+    def id(self):
+        return self.raw_object.get('id', '')
+    @rltk.cached_property
+    def publisher(self):
+        return self.raw_object.get('publisher', '')
+    @rltk.cached_property
+    def full_name_string(self):
+        return self.raw_object.get('name', '')
+    @rltk.cached_property
+    def name_tokens(self):
+        tokens = tokenize(str(self.full_name_string))
+        return set(tokens)
+
+class LocationRecord(rltk.Record):
+    def __init__(self, raw_object):
+        super().__init__(raw_object)
+        self.name = ''
+    @rltk.cached_property
+    def id(self):
+        return self.raw_object.get('id', '')
+    @rltk.cached_property
+    def full_name_string(self):
+        return self.raw_object.get('name', '')
+    @rltk.cached_property
+    def name_tokens(self):
+        tokens = tokenize(str(self.full_name_string))
+        return set(tokens)
+
 ####################################### FIELD SIMILARITY AND ENTITY LINKING #######################################
 
-# name string similarity score
-def chars_movie_or_issue_to_wikia_similarity(r_movie_or_issue_char, r_wikia_char):    
-    full_name_m = r_movie_or_issue_char.full_name_string.lower()
-    full_name_w = r_wikia_char.full_name_string.lower()
+def similarity_match_by_name_and_publisher(record1, record2):    
+    full_name_m = record1.full_name_string.lower()
+    full_name_w = record2.full_name_string.lower()
     
-    publishers_match = (r_movie_or_issue_char.publisher == r_wikia_char.publisher)
+    publishers_match = (record1.publisher == record2.publisher)
 
     # full name score
     if full_name_m == full_name_w and publishers_match:
         return True, 1
     # Jaccard name score for whole set of name tokens (dirty)
-    jaccard_name_score = rltk.jaccard_index_similarity(r_movie_or_issue_char.name_tokens, r_wikia_char.name_tokens)
+    jaccard_name_score = rltk.jaccard_index_similarity(record1.name_tokens, record2.name_tokens)
     # Jaro Winkerler name score for re-assembeled full name (clean)
     jw_name_score = rltk.jaro_winkler_similarity(full_name_m, full_name_w)
     total = jaccard_name_score * 0.65 + jw_name_score * 0.35
@@ -352,14 +386,32 @@ def chars_movie_or_issue_to_wikia_similarity(r_movie_or_issue_char, r_wikia_char
     else:
         return False, total/3
 
-def find_chars_movie_or_issue_to_wikia_matching_record(r_movie_or_issue_char, ds_wikia_char):
+def similarity_match_by_name(record1, record2):    
+    full_name_m = record1.full_name_string.lower()
+    full_name_w = record2.full_name_string.lower()
+
+    # full name score
+    if full_name_m == full_name_w:
+        return True, 1
+    # Jaccard name score for whole set of name tokens (dirty)
+    jaccard_name_score = rltk.jaccard_index_similarity(record1.name_tokens, record2.name_tokens)
+    # Jaro Winkerler name score for re-assembeled full name (clean)
+    jw_name_score = rltk.jaro_winkler_similarity(full_name_m, full_name_w)
+    total = jaccard_name_score * 0.65 + jw_name_score * 0.35
+
+    return total > 0.7, total
+
+def match_record_to_ds(record1, dataset2, withpublisher=True):
     best_match_confidence = 0
     best_match_id = None
-    for r_wikia_char in ds_wikia_char:
+    for record2 in dataset2:
         # get result and confidence
-        result, confidence = chars_movie_or_issue_to_wikia_similarity(r_movie_or_issue_char, r_wikia_char)
+        if withpublisher:
+            result, confidence = similarity_match_by_name_and_publisher(record1, record2)
+        else:
+            result, confidence = similarity_match_by_name(record1, record2)
         if True == result and confidence > best_match_confidence:
-            best_match_id = r_wikia_char.id
+            best_match_id = record2.id
             best_match_confidence = confidence
     # return result-uri and confidence of the result
     return best_match_id, best_match_confidence
@@ -376,7 +428,7 @@ def entity_links_stage_1():
     tot_counter = 0
     for item in ds_movie_char:
         tot_counter += 1
-        res_id, res_conf = find_chars_movie_or_issue_to_wikia_matching_record(item, ds_wikia_char)
+        res_id, res_conf = match_record_to_ds(item, ds_wikia_char)
         if res_id != None:
             print('[%003d]: [%s] ---%03.02f%%--- [%s]' % (tot_counter, item.id, res_conf*100, res_id))
             SIM_CHARS__MOVIE_TO_WIKIA[item.id] = (res_id, res_conf)
@@ -394,7 +446,7 @@ def entity_links_stage_2():
     tot_counter = 0
     for item in ds_issue_char:
         tot_counter += 1
-        res_id, res_conf = find_chars_movie_or_issue_to_wikia_matching_record(item, ds_wikia_char)
+        res_id, res_conf = match_record_to_ds(item, ds_wikia_char)
         if res_id != None:
             print('[%003d]: [%s] ---%03.02f%%--- [%s]' % (tot_counter, item.id, res_conf*100, res_id))
             SIM_CHARS__ISSUE_TO_WIKIA[item.id] = (res_id, res_conf)
@@ -402,10 +454,48 @@ def entity_links_stage_2():
         print('SIM_CHARS__ISSUE_TO_WIKIA: ' + str(len(SIM_CHARS__ISSUE_TO_WIKIA)))
         json.dump(SIM_CHARS__ISSUE_TO_WIKIA, outfile, indent=2)
 
+def entity_links_stage_3():
+    # load Datasets
+    ds_issue_team = rltk.Dataset(reader=rltk.JsonLinesReader('ISSUE_TEAMS_DICT.jl'), record_class=TeamRecord, adapter=rltk.MemoryAdapter())
+    ds_wikia_team = rltk.Dataset(reader=rltk.JsonLinesReader('WIKIA_TEAMS_DICT.jl'), record_class=TeamRecord, adapter=rltk.MemoryAdapter())
+    # print some entries
+    print(ds_issue_team.generate_dataframe().head(5))
+    print(ds_wikia_team.generate_dataframe().head(5))
+    tot_counter = 0
+    for item in ds_issue_team:
+        tot_counter += 1
+        res_id, res_conf = match_record_to_ds(item, ds_wikia_team)
+        if res_id != None:
+            print('[%003d]: [%s] ---%03.02f%%--- [%s]' % (tot_counter, item.id, res_conf*100, res_id))
+            SIM_TEAMS__ISSUE_TO_WIKIA[item.id] = (res_id, res_conf)
+    with open('SIM_TEAMS__ISSUE_TO_WIKIA.json', 'w') as outfile:
+        print('SIM_TEAMS__ISSUE_TO_WIKIA: ' + str(len(SIM_TEAMS__ISSUE_TO_WIKIA)))
+        json.dump(SIM_TEAMS__ISSUE_TO_WIKIA, outfile, indent=2)
+
+def entity_links_stage_4():
+    # load Datasets
+    ds_issue_location = rltk.Dataset(reader=rltk.JsonLinesReader('ISSUE_LOCATIONS_DICT.jl'), record_class=LocationRecord, adapter=rltk.MemoryAdapter())
+    ds_wikia_location = rltk.Dataset(reader=rltk.JsonLinesReader('WIKIA_LOCATIONS_DICT.jl'), record_class=LocationRecord, adapter=rltk.MemoryAdapter())
+    # print some entries
+    print(ds_issue_location.generate_dataframe().head(5))
+    print(ds_wikia_location.generate_dataframe().head(5))
+    tot_counter = 0
+    for item in ds_issue_location:
+        tot_counter += 1
+        res_id, res_conf = match_record_to_ds(item, ds_wikia_location, False)
+        if res_id != None:
+            print('[%003d]: [%s] ---%03.02f%%--- [%s]' % (tot_counter, item.id, res_conf*100, res_id))
+            SIM_LOCATIONS__ISSUE_TO_WIKIA[item.id] = (res_id, res_conf)
+    with open('SIM_LOCATIONS__ISSUE_TO_WIKIA.json', 'w') as outfile:
+        print('SIM_LOCATIONS__ISSUE_TO_WIKIA: ' + str(len(SIM_LOCATIONS__ISSUE_TO_WIKIA)))
+        json.dump(SIM_LOCATIONS__ISSUE_TO_WIKIA, outfile, indent=2)
+
 try:
     # generate_dicts()
     # open_dicts_generate_jls()
     # entity_links_stage_1()
-    entity_links_stage_2()
+    # entity_links_stage_2()
+    # entity_links_stage_3()
+    entity_links_stage_4()
 finally:
     print('Done')
