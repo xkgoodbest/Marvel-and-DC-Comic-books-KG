@@ -88,18 +88,25 @@ def query():
     if _sparql:
         sparql.setQuery(SPARQL_PREFIXES + _sparql)
         results = sparql.query().convert()
-        keys = results["results"]["bindings"][0].keys()
         ret = list()
-        for i in range(len(results["results"]["bindings"])):
-            re = list()
-            for k in keys:
-                if results["results"]["bindings"][i][k]['type'] == 'uri':
-                    re.append(
-                        (add_prefix(results["results"]["bindings"][i][k]['value']), True))
-                else:
-                    re.append(
-                        (results["results"]["bindings"][i][k]['value'], False))
-            ret.append(re)
+        try:
+            print(results)
+            keys = results["results"]["bindings"][0].keys()
+            for i in range(len(results["results"]["bindings"])):
+                re = list()
+                for k in keys:
+                    if results["results"]["bindings"][i][k]['type'] == 'uri':
+                        replaced_uri = add_prefix(
+                            results["results"]["bindings"][i][k]['value'])
+                        actual_link = True if (
+                            'https://' in replaced_uri or 'http://' in replaced_uri) else False
+                        re.append((replaced_uri, True, actual_link))
+                    else:
+                        re.append(
+                            (results["results"]["bindings"][i][k]['value'], False, False))
+                ret.append(re)
+        except:
+            keys = ['No results']
         return render_template('query.html', title='Query', key=keys, result=ret)
 
 
@@ -127,21 +134,27 @@ def get_all_attr(uri):
             WHERE {
               %s ?predicate ?object .
             }
-            LIMIT 50
+            LIMIT 200
             """ % (uri)
     sparql.setQuery(SPARQL_PREFIXES + _sparql1)
     results = sparql.query().convert()
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append((add_prefix(uri), True))
+            replaced_uri = add_prefix(uri)
+            actual_link = True if (
+                'https://' in replaced_uri or 'http://' in replaced_uri) else False
+            re.append((replaced_uri, True, actual_link))
             for k in key1:
                 if results["results"]["bindings"][i][k]['type'] == 'uri':
-                    re.append(
-                        (add_prefix(results["results"]["bindings"][i][k]['value']), True))
+                    replaced_uri = add_prefix(
+                        results["results"]["bindings"][i][k]['value'])
+                    actual_link = True if (
+                        'https://' in replaced_uri or 'http://' in replaced_uri) else False
+                    re.append((replaced_uri, True, actual_link))
                 else:
                     re.append(
-                        (results["results"]["bindings"][i][k]['value'], False))
+                        (results["results"]["bindings"][i][k]['value'], False, False))
             ret.append(re)
 
     _sparql2 = """
@@ -149,7 +162,7 @@ def get_all_attr(uri):
             WHERE {
               ?subject %s ?object .
             }
-            LIMIT 50
+            LIMIT 200
             """ % (uri)
     sparql.setQuery(SPARQL_PREFIXES + _sparql2)
     results = sparql.query().convert()
@@ -157,18 +170,27 @@ def get_all_attr(uri):
         for i in range(len(results["results"]["bindings"])):
             re = list()
             if results["results"]["bindings"][i]['subject']['type'] == 'uri':
-                re.append((add_prefix(results["results"]["bindings"]
-                                      [i]['subject']['value']), True))
+                replaced_uri = add_prefix(add_prefix(
+                    results["results"]["bindings"][i]['subject']['value']))
+                actual_link = True if (
+                    'https://' in replaced_uri or 'http://' in replaced_uri) else False
+                re.append((replaced_uri, True, actual_link))
             else:
                 re.append((results["results"]["bindings"]
-                           [i]['subject']['value'], False))
-            re.append((add_prefix(uri), True))
+                           [i]['subject']['value'], False, False))
+            replaced_uri = add_prefix(uri)
+            actual_link = True if (
+                'https://' in replaced_uri or 'http://' in replaced_uri) else False
+            re.append((replaced_uri, True, actual_link))
             if results["results"]["bindings"][i]['object']['type'] == 'uri':
-                re.append((add_prefix(results["results"]["bindings"]
-                                      [i]['object']['value']), True))
+                replaced_uri = add_prefix(add_prefix(
+                    results["results"]["bindings"][i]['object']['value']))
+                actual_link = True if (
+                    'https://' in replaced_uri or 'http://' in replaced_uri) else False
+                re.append((replaced_uri, True, actual_link))
             else:
                 re.append((results["results"]["bindings"]
-                           [i]['object']['value'], False))
+                           [i]['object']['value'], False, False))
             ret.append(re)
     key3 = ['subject', 'predicate']
     _sparql3 = """
@@ -176,7 +198,7 @@ def get_all_attr(uri):
             WHERE {
               ?subject ?predicate %s .
             }
-            LIMIT 50
+            LIMIT 200
             """ % (uri)
     sparql.setQuery(SPARQL_PREFIXES + _sparql3)
     results = sparql.query().convert()
@@ -189,8 +211,11 @@ def get_all_attr(uri):
                         (add_prefix(results["results"]["bindings"][i][k]['value']), True))
                 else:
                     re.append(
-                        (results["results"]["bindings"][i][k]['value'], False))
-            re.append((add_prefix(uri), True))
+                        (results["results"]["bindings"][i][k]['value'], False, False))
+            replaced_uri = add_prefix(uri)
+            actual_link = True if (
+                'https://' in replaced_uri or 'http://' in replaced_uri) else False
+            re.append((replaced_uri, True, actual_link))
             ret.append(re)
     return ret
 
@@ -264,8 +289,6 @@ def cast_and_find_max(strlist):
         if currnum > max_val:
             max_val = currnum
     return max_val
-
-# TODO: avoid error in case of no results...
 
 
 if __name__ == '__main__':
