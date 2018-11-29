@@ -85,7 +85,6 @@ def query():
         results = sparql.query().convert()
         ret = list()
         try:
-            print(results)
             keys = results["results"]["bindings"][0].keys()
             for i in range(len(results["results"]["bindings"])):
                 re = list()

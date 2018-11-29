@@ -1,0 +1,826 @@
+{
+  "mdcu:hawkeye": [
+    "mdcu:_wiki_katherine_bishop__earth_11051_",
+    1
+  ],
+  "mdcu:stan_lee": [
+    "mdcu:_wiki_stan_lee__earth_616_",
+    1
+  ],
+  "mdcu:maria_rambeau": [
+    "mdcu:_wiki_maria_rambeau__earth_616_",
+    1
+  ],
+  "mdcu:reva_connors": [
+    "mdcu:_wiki_reva_connors__earth_616_",
+    1
+  ],
+  "mdcu:blondie": [
+    "mdcu:_wiki_blondie__lupine___earth_616_",
+    1
+  ],
+  "mdcu:nebula": [
+    "mdcu:_wiki_nebula__earth_91119_",
+    1
+  ],
+  "mdcu:gert_yorkes": [
+    "mdcu:_wiki_gertrude_yorkes__earth_616_",
+    1
+  ],
+  "mdcu:superman": [
+    "mdcu:_wiki_ripper_jones__earth_a_",
+    1
+  ],
+  "mdcu:chen": [
+    "mdcu:_wiki_chen__bloodshadows___earth_616_",
+    1
+  ],
+  "mdcu:cole": [
+    "mdcu:_wiki_cole__omega_core___earth_616_",
+    1
+  ],
+  "mdcu:quicksilver": [
+    "mdcu:_wiki_thomas_shepherd__earth_11051_",
+    1
+  ],
+  "mdcu:iron_man": [
+    "mdcu:_wiki_anthony_stark__skrull___earth_616_",
+    1
+  ],
+  "mdcu:black_widow": [
+    "mdcu:_wiki_dean_tarlek__earth_616_",
+    1
+  ],
+  "mdcu:janet_stein": [
+    "mdcu:_wiki_janet_stein__earth_616_",
+    1
+  ],
+  "mdcu:howard_stark": [
+    "mdcu:_wiki_howard_stark__earth_616_",
+    1
+  ],
+  "mdcu:catwoman": [
+    "mdcu:_wiki_selina_kyle__earth_one_",
+    1
+  ],
+  "mdcu:ward_meachum": [
+    "mdcu:_wiki_ward_meachum__earth_616_",
+    1
+  ],
+  "mdcu:agent_hart": [
+    "mdcu:_wiki_agent_hart__earth_616_",
+    1
+  ],
+  "mdcu:sally": [
+    "mdcu:_wiki_sally__earth_616_",
+    1
+  ],
+  "mdcu:odin": [
+    "mdcu:_wiki_odin_borson__earth_22020_",
+    1
+  ],
+  "mdcu:spider_man": [
+    "mdcu:_wiki_spider_man__a_i_vengers___earth_616_",
+    0.986
+  ],
+  "mdcu:lucius_fox": [
+    "mdcu:_wiki_lucius_fox__new_earth_",
+    1
+  ],
+  "mdcu:lance_hunter": [
+    "mdcu:_wiki_lancelot_hunter__earth_616_",
+    1
+  ],
+  "mdcu:erik_selvig": [
+    "mdcu:_wiki_erik_selvig__earth_616_",
+    1
+  ],
+  "mdcu:cornell_cottonmouth_stokes": [
+    "mdcu:_wiki_cornell_stokes__earth_616_",
+    0.8422688422688422
+  ],
+  "mdcu:karolina_dean": [
+    "mdcu:_wiki_karolina_dean__earth_616_",
+    1
+  ],
+  "mdcu:gary": [
+    "mdcu:_wiki_gary__cameraman___earth_616_",
+    1
+  ],
+  "mdcu:lash": [
+    "mdcu:_wiki_lash__inhuman___earth_616_",
+    1
+  ],
+  "mdcu:green_lantern": [
+    "mdcu:_wiki_spak_drom__new_earth_",
+    1
+  ],
+  "mdcu:gordon": [
+    "mdcu:_wiki_gordon__earth_616_",
+    1
+  ],
+  "mdcu:harold_meachum": [
+    "mdcu:_wiki_harold_meachum__earth_616_",
+    1
+  ],
+  "mdcu:catherine_wilder": [
+    "mdcu:_wiki_catherine_wilder__earth_616_",
+    1
+  ],
+  "mdcu:peggy_carter": [
+    "mdcu:_wiki_margaret_carter__earth_982_",
+    1
+  ],
+  "mdcu:charles": [
+    "mdcu:_wiki_charles__actor___earth_616_",
+    1
+  ],
+  "mdcu:vision": [
+    "mdcu:_wiki_aarkus__earth_616_",
+    1
+  ],
+  "mdcu:bron_char": [
+    "mdcu:_wiki_bron_char__earth_616_",
+    1
+  ],
+  "mdcu:karen_page": [
+    "mdcu:_wiki_karen_page__earth_616_",
+    1
+  ],
+  "mdcu:robin": [
+    "mdcu:_wiki_jason_todd__earth_one_",
+    1
+  ],
+  "mdcu:raymond_piranha_jones": [
+    "mdcu:_wiki_raymond_jones__earth_616_",
+    0.8517094017094018
+  ],
+  "mdcu:chen_wu": [
+    "mdcu:_wiki_chen_wu__earth_616_",
+    0.98
+  ],
+  "mdcu:victoria_hand": [
+    "mdcu:_wiki_victoria_hand__earth_616_",
+    1
+  ],
+  "mdcu:erik_killmonger": [
+    "mdcu:_wiki_erik_killmonger__earth_616_",
+    0.9494444444444444
+  ],
+  "mdcu:hulk": [
+    "mdcu:_wiki_bruce_banner__onslaught_reborn___earth_616_",
+    1
+  ],
+  "mdcu:hugh_jones": [
+    "mdcu:_wiki_hugh_jones__earth_616_",
+    1
+  ],
+  "mdcu:bruce_banner": [
+    "mdcu:_wiki_bruce_banner__doom27s_clone___earth_616_",
+    1
+  ],
+  "mdcu:kraglin": [
+    "mdcu:_wiki_kraglin__earth_616_",
+    1
+  ],
+  "mdcu:commissioner_gordon": [
+    "mdcu:_wiki_james_gordon__earth_one_",
+    1
+  ],
+  "mdcu:werner_von_strucker": [
+    "mdcu:_wiki_werner_von_strucker__earth_616_",
+    1
+  ],
+  "mdcu:alphonso_mack_mackenzie": [
+    "mdcu:_wiki_alphonso_mackenzie__earth_616_",
+    0.7681159420289856
+  ],
+  "mdcu:rufus": [
+    "mdcu:_wiki_rufus__cat___earth_616_",
+    1
+  ],
+  "mdcu:colleen_wing": [
+    "mdcu:_wiki_colleen_wing__earth_616_",
+    1
+  ],
+  "mdcu:viper_1": [
+    "mdcu:_wiki_viper__hobgoblin___earth_616_",
+    0.98
+  ],
+  "mdcu:alex_wilder": [
+    "mdcu:_wiki_alex_wilder__earth_616_",
+    1
+  ],
+  "mdcu:vicki_vale": [
+    "mdcu:_wiki_victoria_vale__new_earth_",
+    1
+  ],
+  "mdcu:vulture": [
+    "mdcu:_wiki_harrison_klein__earth_616_",
+    1
+  ],
+  "mdcu:happy_hogan": [
+    "mdcu:_wiki_harold_hogan__earth_616_",
+    1
+  ],
+  "mdcu:luke_cage": [
+    "mdcu:_wiki_luke_cage__earth_trn579_",
+    1
+  ],
+  "mdcu:thor": [
+    "mdcu:_wiki_thor_odinson__earth_1610_",
+    1
+  ],
+  "mdcu:okoye": [
+    "mdcu:_wiki_okoye__earth_616_",
+    1
+  ],
+  "mdcu:rocket": [
+    "mdcu:_wiki_89p13__earth_415_",
+    1
+  ],
+  "mdcu:korath": [
+    "mdcu:_wiki_korath__earth_12041_",
+    1
+  ],
+  "mdcu:thanos": [
+    "mdcu:_wiki_thanos__earth_90266_",
+    1
+  ],
+  "mdcu:crossbones": [
+    "mdcu:_wiki_brock_rumlow__heroes_reborn___earth_616_",
+    1
+  ],
+  "mdcu:ott": [
+    "mdcu:_wiki_ott__earth_616_",
+    1
+  ],
+  "mdcu:maria_stark": [
+    "mdcu:_wiki_maria_carbonell__earth_616_",
+    1
+  ],
+  "mdcu:mera": [
+    "mdcu:_wiki_mera__new_earth_",
+    1
+  ],
+  "mdcu:stacey_yorkes": [
+    "mdcu:_wiki_stacey_yorkes__earth_616_",
+    1
+  ],
+  "mdcu:ultron": [
+    "mdcu:_wiki_ultron__earth_616_",
+    1
+  ],
+  "mdcu:gabe_reyes": [
+    "mdcu:_wiki_gabriel_reyes__earth_616_",
+    1
+  ],
+  "mdcu:scarecrow": [
+    "mdcu:_wiki_jonathan_crane__earth_one_",
+    1
+  ],
+  "mdcu:ghost_rider": [
+    "mdcu:_wiki_alejandra_jones__earth_616_",
+    1
+  ],
+  "mdcu:lorelei": [
+    "mdcu:_wiki_lorelei_travis__earth_616_",
+    1
+  ],
+  "mdcu:zhou_cheng": [
+    "mdcu:_wiki_zhou_cheng__earth_616_",
+    1
+  ],
+  "mdcu:jonah": [
+    "mdcu:_wiki_anthony_gardenia__earth_616_",
+    1
+  ],
+  "mdcu:victor_stein": [
+    "mdcu:_wiki_victor_stein__earth_616_",
+    1
+  ],
+  "mdcu:ocean_master": [
+    "mdcu:_wiki_orm_marius__new_earth_",
+    1
+  ],
+  "mdcu:carl": [
+    "mdcu:_wiki_carl__kenneth_kincaid27s_nephew___earth_616_",
+    1
+  ],
+  "mdcu:nico_minoru": [
+    "mdcu:_wiki_nico_minoru__earth_616_",
+    1
+  ],
+  "mdcu:jane_foster": [
+    "mdcu:_wiki_jane_foster__heroes_reborn___earth_616_",
+    1
+  ],
+  "mdcu:nakia": [
+    "mdcu:_wiki_nakia_bahadir__earth_616_",
+    1
+  ],
+  "mdcu:foggy_nelson": [
+    "mdcu:_wiki_franklin_nelson__earth_616_",
+    1
+  ],
+  "mdcu:jessica_jones": [
+    "mdcu:_wiki_jessica_jones__earth_616_",
+    1
+  ],
+  "mdcu:dr__noah_burstein": [
+    "mdcu:_wiki_noah_burstein__earth_616_",
+    0.9773529411764705
+  ],
+  "mdcu:falcon": [
+    "mdcu:_wiki_joaquin_torres__earth_616_",
+    1
+  ],
+  "mdcu:happy_sam_sawyer": [
+    "mdcu:_wiki_samuel_sawyer__earth_616_",
+    0.806875
+  ],
+  "mdcu:christine_everhart": [
+    "mdcu:_wiki_christine_everhart__earth_616_",
+    1
+  ],
+  "mdcu:bride_of_nine_spiders": [
+    "mdcu:_wiki_bride_of_nine_spiders__earth_616_",
+    1
+  ],
+  "mdcu:mainframe": [
+    "mdcu:_wiki_ian_wajler__earth_616_",
+    1
+  ],
+  "mdcu:betty_ross": [
+    "mdcu:_wiki_elizabeth_ross__earth_616_",
+    1
+  ],
+  "mdcu:leslie_dean": [
+    "mdcu:_wiki_leslie_dean__earth_616_",
+    1
+  ],
+  "mdcu:sif": [
+    "mdcu:_wiki_sif__earth_555326_",
+    1
+  ],
+  "mdcu:junior_juniper": [
+    "mdcu:_wiki_jonathan_juniper__earth_616_",
+    1
+  ],
+  "mdcu:black_panther": [
+    "mdcu:_wiki_t27challa__earth_616_",
+    1
+  ],
+  "mdcu:misty_knight": [
+    "mdcu:_wiki_mercedes_knight__earth_616_",
+    1
+  ],
+  "mdcu:flint": [
+    "mdcu:_wiki_flint__dwarf___earth_616_",
+    1
+  ],
+  "mdcu:volstagg": [
+    "mdcu:_wiki_volstagg__earth_616_",
+    1
+  ],
+  "mdcu:zuri": [
+    "mdcu:_wiki_zuri__earth_616_",
+    1
+  ],
+  "mdcu:alfred_pennyworth": [
+    "mdcu:_wiki_alfred_pennyworth__earth_one_",
+    1
+  ],
+  "mdcu:spud": [
+    "mdcu:_wiki_spud__earth_616_",
+    1
+  ],
+  "mdcu:elektra_natchios": [
+    "mdcu:_wiki_elektra_natchios__earth_2992_",
+    0.9606250000000001
+  ],
+  "mdcu:stick": [
+    "mdcu:_wiki_stick__god___earth_616_",
+    1
+  ],
+  "mdcu:robert_minoru": [
+    "mdcu:_wiki_robert_minoru__earth_616_",
+    1
+  ],
+  "mdcu:topaz": [
+    "mdcu:_wiki_cynthia_rossini__earth_616_",
+    1
+  ],
+  "mdcu:michael_carter": [
+    "mdcu:_wiki_michael_carter__earth_199999_",
+    1
+  ],
+  "mdcu:rosalie_carbone": [
+    "mdcu:_wiki_rosalie_carbone__earth_616_",
+    1
+  ],
+  "mdcu:fandral": [
+    "mdcu:_wiki_fandral__duplicate___earth_616_",
+    1
+  ],
+  "mdcu:captain_marvel": [
+    "mdcu:_wiki_mar_vell__skrull_impostor___earth_616_",
+    1
+  ],
+  "mdcu:michelle": [
+    "mdcu:_wiki_michelle__inhuman___earth_616_",
+    1
+  ],
+  "mdcu:skinhead": [
+    "mdcu:_wiki_edward_cross__skinhead___earth_616_",
+    1
+  ],
+  "mdcu:dad": [
+    "mdcu:_wiki_dad__new_earth_",
+    1
+  ],
+  "mdcu:winter_soldier": [
+    "mdcu:_wiki_winter_soldier__tsum_tsum___earth_616_",
+    1
+  ],
+  "mdcu:sharon_carter": [
+    "mdcu:_wiki_sharon_carter__earth_2301_",
+    1
+  ],
+  "mdcu:glenn_talbot": [
+    "mdcu:_wiki_glenn_talbot__lmd___earth_616_",
+    1
+  ],
+  "mdcu:korg": [
+    "mdcu:_wiki_korg__earth_616_",
+    1
+  ],
+  "mdcu:ruby": [
+    "mdcu:_wiki_ruby__ravens___earth_616_",
+    1
+  ],
+  "mdcu:ramirez": [
+    "mdcu:_wiki_ramirez__earth_616_",
+    1
+  ],
+  "mdcu:batgirl": [
+    "mdcu:_wiki_barbara_gordon__earth_one_",
+    1
+  ],
+  "mdcu:valkyrie": [
+    "mdcu:_wiki_sian_bowen__earth_616_",
+    1
+  ],
+  "mdcu:jiaying": [
+    "mdcu:_wiki_jiaying__earth_616_",
+    1
+  ],
+  "mdcu:justin_hammer": [
+    "mdcu:_wiki_justin_hammer__earth_616_",
+    1
+  ],
+  "mdcu:holden_radcliffe": [
+    "mdcu:_wiki_holden_radcliffe__earth_616_",
+    1
+  ],
+  "mdcu:natasha_romanoff": [
+    "mdcu:_wiki_natalia_romanova__a_i____earth_616_",
+    1
+  ],
+  "mdcu:yondu": [
+    "mdcu:_wiki_yondu_udonta__earth_616_",
+    1
+  ],
+  "mdcu:felix": [
+    "mdcu:_wiki_felix__earth_616_",
+    1
+  ],
+  "mdcu:bounty_hunter": [
+    "mdcu:_wiki_bounty_hunter_ii__earth_one_",
+    1
+  ],
+  "mdcu:barber": [
+    "mdcu:_wiki_barber__new_men___earth_616_",
+    1
+  ],
+  "mdcu:jason_wilkes": [
+    "mdcu:_wiki_jason_wilkes__earth_616_",
+    1
+  ],
+  "mdcu:rose": [
+    "mdcu:_wiki_phillip_hayes__earth_616_",
+    1
+  ],
+  "mdcu:raza": [
+    "mdcu:_wiki_raza__earth_616_",
+    1
+  ],
+  "mdcu:mantis": [
+    "mdcu:_wiki_mantis__earth_616_",
+    1
+  ],
+  "mdcu:enoch": [
+    "mdcu:_wiki_enoch__earth_616_",
+    1
+  ],
+  "mdcu:everett_k__ross": [
+    "mdcu:_wiki_everett_ross__earth_616_",
+    0.8281666666666667
+  ],
+  "mdcu:claire_temple": [
+    "mdcu:_wiki_claire_temple__earth_616_",
+    0.7289592760180996
+  ],
+  "mdcu:ayo": [
+    "mdcu:_wiki_ayo__earth_616_",
+    1
+  ],
+  "mdcu:tullk": [
+    "mdcu:_wiki_tullk_ul_zyn__earth_616_",
+    1
+  ],
+  "mdcu:surtur": [
+    "mdcu:_wiki_surtur__earth_616_",
+    1
+  ],
+  "mdcu:peter_parker": [
+    "mdcu:_wiki_peter_parker__counter_earth___earth_616_",
+    1
+  ],
+  "mdcu:john_bushmaster_mciver": [
+    "mdcu:_wiki_john_mciver__earth_616_",
+    0.9130303030303031
+  ],
+  "mdcu:geoffrey_wilder": [
+    "mdcu:_wiki_geoffrey_wilder__earth_616_",
+    1
+  ],
+  "mdcu:heimdall": [
+    "mdcu:_wiki_heimdall__earth_616_",
+    1
+  ],
+  "mdcu:doctor_strange": [
+    "mdcu:_wiki_carlo_strange__earth_616_",
+    1
+  ],
+  "mdcu:chase_stein": [
+    "mdcu:_wiki_chase_stein__earth_616_",
+    1
+  ],
+  "mdcu:bakuto": [
+    "mdcu:_wiki_bakuto__earth_616_",
+    1
+  ],
+  "mdcu:gamora": [
+    "mdcu:_wiki_gamora__earth_trn012_",
+    1
+  ],
+  "mdcu:ayesha": [
+    "mdcu:_wiki_ayesha_of_balobedu__earth_616_",
+    1
+  ],
+  "mdcu:mom": [
+    "mdcu:_wiki_mom__new_earth_",
+    1
+  ],
+  "mdcu:bane": [
+    "mdcu:_wiki_bane_of_apokolips__new_earth_",
+    1
+  ],
+  "mdcu:phil": [
+    "mdcu:_wiki_phil__centaur___earth_616_",
+    1
+  ],
+  "mdcu:leet_brannis": [
+    "mdcu:_wiki_leet_brannis__earth_616_",
+    1
+  ],
+  "mdcu:ego": [
+    "mdcu:_wiki_ego__clone___earth_616_",
+    1
+  ],
+  "mdcu:aaron_davis": [
+    "mdcu:_wiki_aaron_davis__earth_199999_",
+    1
+  ],
+  "mdcu:canelo": [
+    "mdcu:_wiki_canelo__earth_616_",
+    1
+  ],
+  "mdcu:roger_dooley": [
+    "mdcu:_wiki_roger_dooley__earth_616_",
+    1
+  ],
+  "mdcu:raina": [
+    "mdcu:_wiki_raina__inhuman___earth_616_",
+    1
+  ],
+  "mdcu:hela": [
+    "mdcu:_wiki_hela__earth_13729_",
+    1
+  ],
+  "mdcu:scarlet_witch": [
+    "mdcu:_wiki_wanda_maximoff__onslaught_reborn___earth_616_",
+    1
+  ],
+  "mdcu:batman": [
+    "mdcu:_wiki_tlano__earth_one_",
+    1
+  ],
+  "mdcu:meredith_quill": [
+    "mdcu:_wiki_meredith_quill__earth_616_",
+    1
+  ],
+  "mdcu:aquaman": [
+    "mdcu:_wiki_aquaman__arthur_curry_",
+    1
+  ],
+  "mdcu:thomas_curry": [
+    "mdcu:_wiki_thomas_curry__new_earth_",
+    0.7570833333333333
+  ],
+  "mdcu:lex_luthor": [
+    "mdcu:_wiki_alexis_luthor__earth_one_",
+    1
+  ],
+  "mdcu:joy_meachum": [
+    "mdcu:_wiki_joy_meachum__earth_616_",
+    1
+  ],
+  "mdcu:grant_ward": [
+    "mdcu:_wiki_grant_ward__earth_616_",
+    1
+  ],
+  "mdcu:frank_dean": [
+    "mdcu:_wiki_frank_dean__earth_616_",
+    1
+  ],
+  "mdcu:jarvis": [
+    "mdcu:_wiki_jarvis__warp_world___earth_616_",
+    1
+  ],
+  "mdcu:may_parker": [
+    "mdcu:_wiki_may_parker__earth_616_",
+    1
+  ],
+  "mdcu:captain_america": [
+    "mdcu:_wiki_jeffrey_mace__earth_8610_",
+    1
+  ],
+  "mdcu:betty": [
+    "mdcu:_wiki_betty__dog___earth_616_",
+    1
+  ],
+  "mdcu:dum_dum_dugan": [
+    "mdcu:_wiki_timothy_dugan__heroes_reborn___earth_616_",
+    0.7571581196581196
+  ],
+  "mdcu:dr__arnim_zola": [
+    "mdcu:_wiki_arnim_zola__earth_616_",
+    0.7150000000000001
+  ],
+  "mdcu:scythe": [
+    "mdcu:_wiki_scythe__mercenary___earth_616_",
+    1
+  ],
+  "mdcu:joker": [
+    "mdcu:_wiki_joker_xx__earth_one_",
+    1
+  ],
+  "mdcu:edwin_jarvis": [
+    "mdcu:_wiki_edwin_jarvis__ultron_sentinel___earth_616_",
+    1
+  ],
+  "mdcu:maria_hill": [
+    "mdcu:_wiki_maria_hill__earth_616_",
+    1
+  ],
+  "mdcu:charlie_27": [
+    "mdcu:_wiki_charlie__cat___earth_616_",
+    0.9790000000000001
+  ],
+  "mdcu:pepper_potts": [
+    "mdcu:_wiki_virginia_potts__heroes_reborn___earth_616_",
+    1
+  ],
+  "mdcu:the_flash": [
+    "mdcu:_wiki_flash__wally_west_",
+    1
+  ],
+  "mdcu:ben": [
+    "mdcu:_wiki_captain_ben__mpdc___earth_616_",
+    1
+  ],
+  "mdcu:tony_stark": [
+    "mdcu:_wiki_anthony_stark__third_a_i____earth_616_",
+    1
+  ],
+  "mdcu:king_laufey": [
+    "mdcu:_wiki_laufey__earth_616_",
+    1
+  ],
+  "mdcu:hogun": [
+    "mdcu:_wiki_hogun__duplicate___earth_616_",
+    1
+  ],
+  "mdcu:steve_rogers": [
+    "mdcu:_wiki_steven_rogers__earth_58163_",
+    1
+  ],
+  "mdcu:frigga": [
+    "mdcu:_wiki_frigga__earth_20051_",
+    1
+  ],
+  "mdcu:obadiah_stane": [
+    "mdcu:_wiki_obadiah_stane__lmd___earth_616_",
+    1
+  ],
+  "mdcu:anne_marie_hoag": [
+    "mdcu:_wiki_anne_marie_hoag__earth_616_",
+    1
+  ],
+  "mdcu:dale_yorkes": [
+    "mdcu:_wiki_dale_yorkes__earth_616_",
+    1
+  ],
+  "mdcu:jason": [
+    "mdcu:_wiki_jason__zenith_city___earth_616_",
+    1
+  ],
+  "mdcu:walter_lawson": [
+    "mdcu:_wiki_walter_lawson__earth_616_",
+    1
+  ],
+  "mdcu:dr__helen_cho": [
+    "mdcu:_wiki_helen_cho__earth_616_",
+    0.7085470085470085
+  ],
+  "mdcu:loki": [
+    "mdcu:_wiki_loki_laufeyson__earth_941066_",
+    1
+  ],
+  "mdcu:d_w__griffith": [
+    "mdcu:_wiki_david_griffith__earth_616_",
+    0.7956468531468531
+  ],
+  "mdcu:tina_minoru": [
+    "mdcu:_wiki_tina_minoru__earth_616_",
+    1
+  ],
+  "mdcu:flash": [
+    "mdcu:_wiki_flash__earth_616_",
+    1
+  ],
+  "mdcu:grandmaster": [
+    "mdcu:_wiki_en_dwi_gast__earth_616_",
+    1
+  ],
+  "mdcu:lois_lane": [
+    "mdcu:_wiki_lois_lane__earth_one_",
+    1
+  ],
+  "mdcu:nick_fury": [
+    "mdcu:_wiki_nicholas_fury__leader___earth_616_",
+    1
+  ],
+  "mdcu:black_manta": [
+    "mdcu:_wiki_black_manta__new_earth_",
+    1
+  ],
+  "mdcu:nuidis_vulko": [
+    "mdcu:_wiki_nuidis_vulko__new_earth_",
+    0.7997222222222222
+  ],
+  "mdcu:phil_coulson": [
+    "mdcu:_wiki_phillip_coulson__earth_616_",
+    1
+  ],
+  "mdcu:jemma_simmons": [
+    "mdcu:_wiki_jemma_simmons__earth_616_",
+    1
+  ],
+  "mdcu:fox": [
+    "mdcu:_wiki_steven_crandall__earth_one_",
+    1
+  ],
+  "mdcu:hannah": [
+    "mdcu:_wiki_hannah__earth_616_",
+    1
+  ],
+  "mdcu:lady_sif": [
+    "mdcu:_wiki_sif__earth_616_",
+    1
+  ],
+  "mdcu:john_garrett": [
+    "mdcu:_wiki_jonathan_garrett__earth_616_",
+    1
+  ],
+  "mdcu:pinky_pinkerton": [
+    "mdcu:_wiki_percival_pinkerton__earth_616_",
+    1
+  ],
+  "mdcu:jim_morita": [
+    "mdcu:_wiki_jim_morita__earth_616_",
+    1
+  ]
+}
