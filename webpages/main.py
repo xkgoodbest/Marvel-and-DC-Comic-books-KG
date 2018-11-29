@@ -113,9 +113,11 @@ def query():
 @app.route('/description', methods=['GET', 'POST'])
 def description():
     uri = request.args.get('uri')
+    hexvals_of_colors = get_image_and_colors_if_class_is_character(uri)
     keys_result = ['subject', 'predicate', 'object']
     ret = get_all_attr(uri)
-    return render_template('description.html', key=keys_result, result=ret)
+    return render_template('description.html', key=keys_result, result=ret,
+        requri=uri, colorsvals=hexvals_of_colors)
 
 
 def add_prefix(uri):
@@ -125,6 +127,28 @@ def add_prefix(uri):
             return uri
     return uri
 
+def get_image_and_colors_if_class_is_character(uri):
+    hex_vals = []
+    _sparql = """
+            SELECT ?hexval
+            WHERE {
+              %s a mdcu:character ;
+                    mdcu:has_color [ mdcu:hex_val ?hexval ] .
+            }
+            """ % (uri)
+    sparql.setQuery(SPARQL_PREFIXES + _sparql)
+    results = sparql.query().convert()
+
+    if len(results["results"]["bindings"]) == 0:
+        return hex_vals
+
+    keys = results["results"]["bindings"][0].keys()
+    int_results = results["results"]["bindings"]
+    for i in range(len(int_results)):
+        for k in keys:
+            curr_val = int_results[i][k]['value']
+            hex_vals.append(curr_val)
+    return hex_vals
 
 def get_all_attr(uri):
     ret = list()

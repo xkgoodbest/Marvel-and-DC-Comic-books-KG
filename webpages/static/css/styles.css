@@ -84,6 +84,14 @@ p {
   font-family: 'Indie Flower', cursive;
 }
 
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-radius: 25px;
+  border: 1px solid #000000;
+}
+
 footer {
   margin-top: 45px;
   padding-top: 5px;

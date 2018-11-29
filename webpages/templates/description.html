@@ -1,14 +1,18 @@
 {% extends "base.html" %}
+{% block content %}
 
-<!DOCTYPE html>
-<html>
-<head>
-
-</head>
-<body>
-  {% block content %}
   <div class="jumbotron">
-    <h1 class="myfancyfont">General descriptions</h1>
+    <h2 class="myfancyfont"><span style="color:blue">{{requri}}</span></br>Results</h2>
+    {% if colorsvals|length > 1 %}
+      <h3 class="myfancyfont">The character's associated colors are:</h3>
+      <table align="center">
+        <tr>
+        {% for hexcolor in colorsvals %}
+          <td> <div class="circle" style="background-color: {{hexcolor}}"></div> </td>
+        {% endfor %}
+        </tr>
+      </table>
+    {% endif %}
     <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
@@ -36,8 +40,5 @@
       </tbody>
     </table>
   </div>
-  {% endblock %}      
-</body>
-</html>
 
-
+{% endblock %}      
