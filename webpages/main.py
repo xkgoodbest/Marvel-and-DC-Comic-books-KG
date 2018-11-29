@@ -117,7 +117,7 @@ def description():
     keys_result = ['subject', 'predicate', 'object']
     ret = get_all_attr(uri)
     return render_template('description.html', key=keys_result, result=ret,
-        requri=uri, colorsvals=hexvals_of_colors)
+                           requri=uri, colorsvals=hexvals_of_colors)
 
 
 def add_prefix(uri):
@@ -126,6 +126,7 @@ def add_prefix(uri):
             uri = uri.replace(key, PREFIX_REPLACE[key])
             return uri
     return uri
+
 
 def get_image_and_colors_if_class_is_character(uri):
     hex_vals = []
@@ -149,6 +150,7 @@ def get_image_and_colors_if_class_is_character(uri):
             curr_val = int_results[i][k]['value']
             hex_vals.append(curr_val)
     return hex_vals
+
 
 def get_all_attr(uri):
     ret = list()
@@ -194,8 +196,8 @@ def get_all_attr(uri):
         for i in range(len(results["results"]["bindings"])):
             re = list()
             if results["results"]["bindings"][i]['subject']['type'] == 'uri':
-                replaced_uri = add_prefix(add_prefix(
-                    results["results"]["bindings"][i]['subject']['value']))
+                replaced_uri = add_prefix(
+                    results["results"]["bindings"][i]['subject']['value'])
                 actual_link = True if (
                     'https://' in replaced_uri or 'http://' in replaced_uri) else False
                 re.append((replaced_uri, True, actual_link))
@@ -232,7 +234,7 @@ def get_all_attr(uri):
             for k in key3:
                 if results["results"]["bindings"][i][k]['type'] == 'uri':
                     replaced_uri = add_prefix(add_prefix(
-                    results["results"]["bindings"][i][k]['value']))
+                        results["results"]["bindings"][i][k]['value']))
                     actual_link = True if (
                         'https://' in replaced_uri or 'http://' in replaced_uri) else False
                     re.append((replaced_uri, True, actual_link))
@@ -278,7 +280,12 @@ def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
         for k in keys:
             curr_val = int_results[i][k]['value']
             if k == 'var':
-                labels.append(add_prefix(curr_val))
+                replaced_uri = add_prefix(curr_val)
+                is_uri = True if (
+                    'https://' in curr_val or 'http://' in curr_val) else False
+                actual_link = True if len(
+                    replaced_uri) == len(curr_val) else False
+                labels.append((replaced_uri, is_uri, actual_link))
             else:
                 values.append(curr_val)
     return labels, values

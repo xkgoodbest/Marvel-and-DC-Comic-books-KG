@@ -27,7 +27,7 @@
            {% for value in k%}
               {% if value[1]==True %}
                 {% if value[2]==False %}
-                  <td><a href="{{ url_for('description', uri=value[0]) }}" id={{value[0]}} >{{value[0]}}</a> </td>
+                  <td><a href="{{url_for('description', uri=value[0]) }}" id={{value[0]}} >{{value[0]}}</a> </td>
                 {% else %}
                   <td><a href={{value[0]}} id={{value[0]}} >{{value[0]}}</a> </td>
                 {% endif %}
