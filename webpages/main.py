@@ -19,18 +19,18 @@ SPARQL_PREFIXES = """
             prefix mdcu: <http://inf558.org/comics#>
 
             """
-PREFIX_REPLACE={
-    'http://www.w3.org/ns/md#':'md:',
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#':'rdf:',
-    'http://www.w3.org/2000/01/rdf-schema#':'rdfs:',
-    'http://schema.org/':'schema:',
-    'http://www.w3.org/XML/1998/namespace':'xml:',
-    'http://www.w3.org/2001/XMLSchema#':'xsd:',
-    'http://xmlns.com/foaf/0.1/':'foaf:',
-    'http://dbpedia.org/property/':'dbp:',
-    'http://dbpedia.org/ontology/':'dbo:',
-    'http://dbpedia.org/resource/':'dbr:',
-    'http://inf558.org/comics#':'mdcu:'
+PREFIX_REPLACE = {
+    'http://www.w3.org/ns/md#': 'md:',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf:',
+    'http://www.w3.org/2000/01/rdf-schema#': 'rdfs:',
+    'http://schema.org/': 'schema:',
+    'http://www.w3.org/XML/1998/namespace': 'xml:',
+    'http://www.w3.org/2001/XMLSchema#': 'xsd:',
+    'http://xmlns.com/foaf/0.1/': 'foaf:',
+    'http://dbpedia.org/property/': 'dbp:',
+    'http://dbpedia.org/ontology/': 'dbo:',
+    'http://dbpedia.org/resource/': 'dbr:',
+    'http://inf558.org/comics#': 'mdcu:'
 }
 COLORS_LIST = ["#F7464A", "#46BFBD", "#FDB45C",
                "#FEDCBA", "#ABCDEF", "#DDDDDD", "#ABCABC"]
@@ -110,14 +110,16 @@ def description():
     ret = get_all_attr(uri)
     return render_template('description.html', key=keys_result, result=ret)
 
+
 def add_prefix(uri):
     for key in PREFIX_REPLACE.keys():
         if key in uri:
-            uri=uri.replace(key,PREFIX_REPLACE[key])
+            uri = uri.replace(key, PREFIX_REPLACE[key])
             return uri
     return uri
+
+
 def get_all_attr(uri):
-    # uri = '<' + uri + '>'
     ret = list()
     key1 = ['predicate', 'object']
     _sparql1 = """
@@ -125,12 +127,10 @@ def get_all_attr(uri):
             WHERE {
               %s ?predicate ?object .
             }
-            LIMIT 10
+            LIMIT 50
             """ % (uri)
-    print(SPARQL_PREFIXES + _sparql1)
     sparql.setQuery(SPARQL_PREFIXES + _sparql1)
     results = sparql.query().convert()
-    print(results)
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
@@ -149,7 +149,7 @@ def get_all_attr(uri):
             WHERE {
               ?subject %s ?object .
             }
-            LIMIT 10
+            LIMIT 50
             """ % (uri)
     sparql.setQuery(SPARQL_PREFIXES + _sparql2)
     results = sparql.query().convert()
@@ -158,14 +158,14 @@ def get_all_attr(uri):
             re = list()
             if results["results"]["bindings"][i]['subject']['type'] == 'uri':
                 re.append((add_prefix(results["results"]["bindings"]
-                           [i]['subject']['value']), True))
+                                      [i]['subject']['value']), True))
             else:
                 re.append((results["results"]["bindings"]
                            [i]['subject']['value'], False))
             re.append((add_prefix(uri), True))
             if results["results"]["bindings"][i]['object']['type'] == 'uri':
                 re.append((add_prefix(results["results"]["bindings"]
-                           [i]['object']['value']), True))
+                                      [i]['object']['value']), True))
             else:
                 re.append((results["results"]["bindings"]
                            [i]['object']['value'], False))
@@ -176,7 +176,7 @@ def get_all_attr(uri):
             WHERE {
               ?subject ?predicate %s .
             }
-            LIMIT 10
+            LIMIT 50
             """ % (uri)
     sparql.setQuery(SPARQL_PREFIXES + _sparql3)
     results = sparql.query().convert()
