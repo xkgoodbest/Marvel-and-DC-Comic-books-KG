@@ -207,8 +207,11 @@ def get_all_attr(uri):
             re = list()
             for k in key3:
                 if results["results"]["bindings"][i][k]['type'] == 'uri':
-                    re.append(
-                        (add_prefix(results["results"]["bindings"][i][k]['value']), True))
+                    replaced_uri = add_prefix(add_prefix(
+                    results["results"]["bindings"][i][k]['value']))
+                    actual_link = True if (
+                        'https://' in replaced_uri or 'http://' in replaced_uri) else False
+                    re.append((replaced_uri, True, actual_link))
                 else:
                     re.append(
                         (results["results"]["bindings"][i][k]['value'], False, False))
