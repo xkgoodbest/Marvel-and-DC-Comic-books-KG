@@ -278,7 +278,7 @@ def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
         for k in keys:
             curr_val = int_results[i][k]['value']
             if k == 'var':
-                labels.append(curr_val)
+                labels.append(add_prefix(curr_val))
             else:
                 values.append(curr_val)
     return labels, values
