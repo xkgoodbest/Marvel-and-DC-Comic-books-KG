@@ -45,7 +45,6 @@ app.secret_key = "super secret key"
 sparql = SPARQLWrapper("http://localhost:3030/mdccomics/query")
 sparql.setReturnFormat(JSON)
 
-
 @app.route('/')
 def output():
     # take default class
@@ -54,7 +53,6 @@ def output():
     # take 'default' option
     cpredicate_clean = pred_opts[CLASS_ATTR_BEST_OPT[cclass]]
     return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
-
 
 @app.route('/refreshfiltertop', methods=['GET'])
 def refresh_filter_top_results():
@@ -65,7 +63,6 @@ def refresh_filter_top_results():
     cpredicate_clean = pred_opts[CLASS_ATTR_BEST_OPT[cclass]]
     return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
 
-
 @app.route('/filtertop', methods=['GET'])
 def filter_top_results():
     # take chosen class
@@ -75,11 +72,9 @@ def filter_top_results():
     cpredicate_clean = request.args.get('chosen_attr')
     return return_main_page_with_filters(cclass, cpredicate_clean, pred_opts)
 
-
 @app.route('/query')
 def query_no_res():
     return render_template('query.html', title='Query')
-
 
 @app.route('/query', methods=['POST'])
 def query():
@@ -109,7 +104,6 @@ def query():
             keys = ['No results']
         return render_template('query.html', title='Query', key=keys, result=ret)
 
-
 @app.route('/description', methods=['GET', 'POST'])
 def description():
     uri = request.args.get('uri')
@@ -118,7 +112,6 @@ def description():
     ret = get_all_attr(uri)
     return render_template('description.html', key=keys_result, result=ret,
         requri=uri, colorsvals=hexvals_of_colors)
-
 
 def add_prefix(uri):
     for key in PREFIX_REPLACE.keys():
@@ -246,7 +239,6 @@ def get_all_attr(uri):
             ret.append(re)
     return ret
 
-
 def return_main_page_with_filters(cclass, cpredicate_clean, pred_opts):
     cpredicate = '<' + cpredicate_clean + '>'
     labels, values = get_top_labels_values_for_class_predicate(
@@ -283,7 +275,6 @@ def get_top_labels_values_for_class_predicate(class_uri, predicate_uri):
                 values.append(curr_val)
     return labels, values
 
-
 def get_avilable_properties_for_class(class_uri):
     _sparql = """
             SELECT DISTINCT ?predicate
@@ -308,7 +299,6 @@ def get_avilable_properties_for_class(class_uri):
 
     return predicates
 
-
 def cast_and_find_max(strlist):
     max_val = 0
     for currstr in strlist:
@@ -316,7 +306,6 @@ def cast_and_find_max(strlist):
         if currnum > max_val:
             max_val = currnum
     return max_val
-
 
 if __name__ == '__main__':
     app.run(debug=True)
