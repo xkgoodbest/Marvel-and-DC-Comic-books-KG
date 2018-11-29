@@ -117,7 +117,7 @@ def add_prefix(uri):
             return uri
     return uri
 def get_all_attr(uri):
-    uri = '<' + uri + '>'
+    # uri = '<' + uri + '>'
     ret = list()
     key1 = ['predicate', 'object']
     _sparql1 = """
@@ -127,12 +127,14 @@ def get_all_attr(uri):
             }
             LIMIT 10
             """ % (uri)
+    print(SPARQL_PREFIXES + _sparql1)
     sparql.setQuery(SPARQL_PREFIXES + _sparql1)
     results = sparql.query().convert()
+    print(results)
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append((add_prefix(uri[1:-1]), True))
+            re.append((add_prefix(uri), True))
             for k in key1:
                 if results["results"]["bindings"][i][k]['type'] == 'uri':
                     re.append(
@@ -160,7 +162,7 @@ def get_all_attr(uri):
             else:
                 re.append((results["results"]["bindings"]
                            [i]['subject']['value'], False))
-            re.append((add_prefix(uri[1:-1]), True))
+            re.append((add_prefix(uri), True))
             if results["results"]["bindings"][i]['object']['type'] == 'uri':
                 re.append((add_prefix(results["results"]["bindings"]
                            [i]['object']['value']), True))
@@ -188,7 +190,7 @@ def get_all_attr(uri):
                 else:
                     re.append(
                         (results["results"]["bindings"][i][k]['value'], False))
-            re.append((add_prefix(uri[1:-1]), True))
+            re.append((add_prefix(uri), True))
             ret.append(re)
     return ret
 
