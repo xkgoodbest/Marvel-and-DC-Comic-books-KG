@@ -62,7 +62,7 @@
          // bar chart data
          var barData = {
          labels : [{% for item in labels %}
-                        "{{item}}",
+                        "{{item[0]}}",
                     {% endfor %}],
          datasets : [
             {
@@ -105,7 +105,15 @@
   <tbody>
     {% for i in range(0,labels| length) %}
       <tr>
-        <td><a href="{{ url_for('description', uri=labels[i]) }}">{{labels[i]}}</a></td>
+        {% if labels[i][1]==True %}
+            {% if labels[i][2]==True %}
+                <td><a href={{labels[i][0]}} id={{labels[i][0]}} >{{labels[i][0]}}</a> </td>
+            {% else %}
+                <td><a href="{{ url_for('description', uri=labels[i][0]) }}">{{labels[i][0]}}</a></td>
+            {% endif %}
+        {% else %}
+            <td>{{labels[i][0]}}</td>
+        {% endif %}
         <td>{{values[i]}}</td>
       </tr>
     {% endfor %}
