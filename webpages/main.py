@@ -137,16 +137,18 @@ def get_all_attr(uri):
         for i in range(len(results["results"]["bindings"])):
             re = list()
             if results["results"]["bindings"][i]['subject']['type'] == 'uri':
-                re.append((results["results"]["bindings"][i]['subject']['value'],True))
-            
+                re.append((results["results"]["bindings"]
+                           [i]['subject']['value'], True))
             else:
-                re.append((results["results"]["bindings"][i]['subject']['value'],False))
-            re.append((uri[1:-1],True))
+                re.append((results["results"]["bindings"]
+                           [i]['subject']['value'], False))
+            re.append((uri[1:-1], True))
             if results["results"]["bindings"][i]['object']['type'] == 'uri':
-                re.append((results["results"]["bindings"][i]['object']['value'],True))
-            
+                re.append((results["results"]["bindings"]
+                           [i]['object']['value'], True))
             else:
-                re.append((results["results"]["bindings"][i]['object']['value'],False))
+                re.append((results["results"]["bindings"]
+                           [i]['object']['value'], False))
             ret.append(re)
     key3 = ['subject', 'predicate']
     _sparql3 = """
@@ -163,10 +165,12 @@ def get_all_attr(uri):
             re = list()
             for k in key3:
                 if results["results"]["bindings"][i][k]['type'] == 'uri':
-                    re.append((results["results"]["bindings"][i][k]['value'],True))
+                    re.append(
+                        (results["results"]["bindings"][i][k]['value'], True))
                 else:
-                    re.append((results["results"]["bindings"][i][k]['value'],False))
-            re.append((uri[1:-1],True))
+                    re.append(
+                        (results["results"]["bindings"][i][k]['value'], False))
+            re.append((uri[1:-1], True))
             ret.append(re)
     return ret
 
