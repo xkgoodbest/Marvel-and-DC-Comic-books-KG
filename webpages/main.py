@@ -90,16 +90,16 @@ def query():
         return render_template('query.html', title='Query', key=keys, result=ret)
 
 
-@app.route('/description', methods=['POST'])
+@app.route('/description', methods=['GET', 'POST'])
 def description():
-    data = request.get_json()
-    ret = get_all_attr(data)
-    keys = ['subject', 'predicate', 'object']
-    return render_template('description.html')
+    uri = request.args.get('uri')
+    keys_result = ['subject', 'predicate', 'object']
+    ret=get_all_attr(uri)
+    return render_template('description.html', key=keys_result,result = ret)
 
 
-def get_all_attr(data):
-    uri = '<' + data['uri'] + '>'
+def get_all_attr(uri):
+    uri = '<' + uri + '>'
     ret = list()
     key1 = ['predicate', 'object']
     _sparql1 = """
@@ -114,7 +114,7 @@ def get_all_attr(data):
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append(data['uri'])
+            re.append(uri)
             for k in key1:
                 re.append(results["results"]["bindings"][i][k]['value'])
             ret.append(re)
@@ -131,9 +131,9 @@ def get_all_attr(data):
     if results["results"]["bindings"]:
         for i in range(len(results["results"]["bindings"])):
             re = list()
-            re.append(data['uri'])
+            re.append(uri)
             re.append(results["results"]["bindings"][i]['subject']['value'])
-            re.append(data['uri'])
+            re.append(uri)
             re.append(results["results"]["bindings"][i]['object']['value'])
             ret.append(re)
     key3 = ['subject', 'predicate']
@@ -151,7 +151,7 @@ def get_all_attr(data):
             re = list()
             for k in key3:
                 re.append(results["results"]["bindings"][i][k]['value'])
-            re.append(data['uri'])
+            re.append(uri)
             ret.append(re)
     return ret
 

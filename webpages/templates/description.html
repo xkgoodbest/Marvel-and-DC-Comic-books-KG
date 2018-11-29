@@ -1,8 +1,16 @@
-{% extends "base.html" %}
-{% block content %}
-      <h1 class="myfancyfont">General descriptions</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+  <h1 class="myfancyfont">General descriptions</h1>
+      {% block content %}
 
       <div class="jumbotron">
-        
+        {{ key }}
       </div>
-{% endblock %}
+      {% endblock %}
+</body>
+</html>
+      
