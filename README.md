@@ -13,3 +13,5 @@ Run Flask server:
 cd webpages
 python main.py
 ```
+
+Visit the following [YouTube link](https://youtu.be/MYFi45EeZV0) for more info
