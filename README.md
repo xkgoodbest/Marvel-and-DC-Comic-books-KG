@@ -15,3 +15,7 @@ python main.py
 ```
 
 Visit the following [YouTube link](https://youtu.be/MYFi45EeZV0) for more info
+
+Our final submission files (slides and summary write-up) can be find in `final_submission` folder.
+
+Thanks for visiting!
